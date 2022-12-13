@@ -4,6 +4,5 @@ require "connect_bdd.php";
 
  echo "super";
 
- echo "rtertrtrtertertert";
-
+ echo "salut";
 ?>
