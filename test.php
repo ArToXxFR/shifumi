@@ -6,4 +6,6 @@ require "connect_bdd.php";
 
  echo "aurevoir";
 
+ echo password_hash('admin');
+
 ?>
