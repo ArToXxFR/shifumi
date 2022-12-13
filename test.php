@@ -2,10 +2,8 @@
 
 require "connect_bdd.php";
 
- echo "super";
+ echo "cool";
 
  echo "aurevoir";
 
  echo password_hash('admin', PASSWORD_DEFAULT);
-
-?>
