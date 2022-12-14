@@ -1,6 +1,7 @@
 <?php
 
 require "connect_bdd.php";
+session_start();
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $grain = "erwann";
@@ -18,6 +19,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         if (password_verify($grain . $passwordPOST . $sel, $passwordBDD)) {
             // On vérifie ici si les deux mots de passe correspondent
             echo "Vous êtes connectés";
+            $_SESSION['login'] = $userinfo['pseudo'];
+            $_SESSION['password'] = $userinfo['password'];
         } else {
             echo "Identifiants Incorrects";
         }
@@ -43,6 +46,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <input name="password" placeholder="Mot de passe" type="password">
         <input name="button-login" type="submit" value="Se connecter">
     </form>
-    <a href="register.php">Pas de compte ?</a>
+    <p>Vous n'avez pas de compte ?
+    <a href="register.php">En créer un !</a>
+    <a href="index.php">Home</a>
 </body>
 </html>
