@@ -22,13 +22,13 @@ var_dump($image);
     <title>Shifumi</title>
 </head>
 <body>
-    <?php if(isset($_SESSION['login']) && isset($_SESSION['password'])){
-            echo "<a href='deconnection.php'>Se déconnecter</a>";
+    <?php if(isset($_SESSION['pseudo']) && isset($_SESSION['image'])){
+            echo "<a href='deconnection.php'>Se déconnecter</a><br/>";
+            echo "Bonjour, ". $_SESSION['pseudo']; ?>
+            <img src="<?= $_SESSION['image'] ?>" alt='avatar' width="100px">; <?php
         } else { 
             echo "<a href='login.php'>Se connecter</a>";
         } ?>
-        <img src="<?= $image['image']?>" alt="avatar" width="100px">
-        <!-- pour l'instant les avatar sont fonctionnels mais à la main -->
 </body>
 </html>
 
