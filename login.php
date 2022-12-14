@@ -49,5 +49,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <p>Vous n'avez pas de compte ?
     <a href="register.php">En créer un !</a>
     <a href="index.php">Home</a>
+    
 </body>
 </html>
