@@ -1,0 +1,193 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-title{
+    width: 100vw;
+    height: 10vh;
+    background-image: url('../img/backgrounds_galaxy.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: 2px solid black;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    margin: 0 auto;
+}
+
+.title{
+    font-family: "futurama", "arial";
+    font-size: 3em;
+    -webkit-text-stroke: 2px yellow;
+    text-shadow: 2px 2px 0 2em orange;
+    text-align: center;
+    margin: 0.5em auto;
+}
+
+.open-button{
+    display: block;
+    width: 90vw;
+    height: 7vh;
+    border: 0.2em solid black;
+    margin: 1em auto;
+    border-radius: 0.5em;
+    font-size: 1em;
+    font-family: "futurama";
+}
+
+.connection-button{
+    display: block;
+    width: 100vw;
+    height: 8vh;
+    border: 0.2em solid black;
+    font-size: 1.1em;
+    font-family: "futurama";
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+}
+
+.score{
+    border-bottom: 0px;
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+
+.position-popup{
+    display: none;
+    position: fixed;
+    width: 90vw;
+    height: 80vh;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.form-popup{
+    width: 100%;
+    height: 80%;
+    background-color: whitesmoke;
+    border: 0.2em solid black;
+    border-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    margin: 1em auto;
+}
+
+.title-popup{
+    text-align: center;
+    margin: 0 auto;
+    padding: 1em;
+    border-bottom: 0.1em solid black;
+}
+
+.close-popup{
+    font-size: 1em;
+    padding: 1em;
+    margin: 1em auto;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    border-radius: 1em;
+    border: 0.1em solid black;
+}
+
+#background {
+    display: none;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: 
+ #000000; 
+    z-index: 1;
+    opacity: 0.7;
+ }
+ 
+@font-face{
+    font-family: "futurama";
+    src: url('../fonts/fr-bold.ttf');
+}
+
+.textmulticolor {
+    background-image: repeating-linear-gradient(to bottom, black, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+.description{
+    text-align: center;
+    font-size: 1.4em;
+    font-family: "futurama";
+    margin: 1em auto;
+}
+
+  .rayures{
+    text-decoration: red wavy line-through;
+  }
+
+.rouge-pastel{
+    background-color: #E85581;
+}
+
+.jaune{
+    background-color: #FDDE58;
+}
+
+.cyan{
+    background-color: #7FCFDA;
+}
+
+.purple{
+    background-color: #8B7AFF;
+}
+
+.input-login{
+    width: 70%;
+    padding: 1em;
+    font-size: 1em;
+}
+
+.profile{
+    padding: 0;
+    float:left;
+    width: 40%;
+    border: 0;
+    height: 8vh;
+    border: 0.2em solid black;
+    border-right: 0;
+}
+
+.deconnection-button{
+    padding: 0;
+    width: 60%  ;
+    height: 8vh;
+    border: 0;
+    text-decoration: none;
+    font-family: "futurama";
+    border: 0.2em solid black;
+}
+
+.deconnection-button:visited{
+    text-decoration: none;
+}
+
+.img-profile{
+    border-radius: 1em;
+    height: 70%;
+    border: 3px solid black;
+    border-radius: 80em;
+}
