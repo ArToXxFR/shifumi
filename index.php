@@ -1,9 +1,8 @@
-<?php session_start(); 
+<?php session_start();
 
 require "connect_bdd.php";
 
-
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['pseudo']) && !isset($_SESSION['image'])) {
         $grain = "erwann";
         $sel = "stpun20/20";
@@ -32,33 +31,44 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 }
                 $_SESSION['pseudo'] = $userInfoConnected['pseudo'];
                 $_SESSION['image'] = $userInfoConnected['image'];
-
             } else {
-                echo "<script>openForm('login')(</script>";
+                echo "<script>openForm('login');</script>";
+                $incorrectId = true;
             }
         } else {
             echo "<script>openForm('login');</script>";
+            $incorrectId = true;
         }
     }
 }
 
+function userConnected()
+{
+    if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 
 $sth = $dbh->prepare("SELECT image FROM avatar WHERE nom='music-bender';");
 $sth->execute();
 $image = $sth->fetch(PDO::FETCH_ASSOC);
 
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet">
+    <script src="js/script.js"></script>
     <title>Shifumi</title>
 </head>
+
 <body>
     <div class="flex">
         <div class="background-title">
@@ -68,18 +78,14 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <div class="description">
         Défier <span class="rayures">Hal</span> Bender à SHIFUMI
     </div>
-    <button class="open-button jaune" onclick=""><img src="/img/joystick.svg" alt="joystick">Tenter votre chance</button>
+    <?php if (userConnected()) { ?>
+        <button class="open-button jaune" onclick="document.location.href='play.php'">Tenter votre chance</button>
+    <?php } else { ?>
+        <button class="open-button jaune" onclick="openForm('login')"><img src="/img/joystick.svg" alt="joystick">Tenter votre chance</button>
+    <?php } ?>
     <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img src="/img/aide.svg" alt="aide"> Rappel des règles</button>
-    
-    <div class="footer">
-        <button class="connection-button score purple" onclick="">Tableau des scores</button>
-        <?php if(isset($_SESSION['pseudo']) && isset($_SESSION['image'])){ ?>
-                <button onclick="" class="profile cyan"><img src="<?= $_SESSION['image'] ?>" alt='avatar' class="img-profile"><span><?= $_SESSION['pseudo']?></span></button>
-                <button onclick="document.location.href='deconnection.php'" class="deconnection-button rouge-pastel">Se déconnecter</button>
-        <?php } else { ?>
-                <button class="connection-button cyan" onclick="openForm('login')">Se connecter</button>
-        <?php } ?>
-    </div>
+
+    <?php require('footer.php'); ?>
 
     <!-- Fond noir transparent lors des popup -->
     <div id="background"></div>
@@ -87,7 +93,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <div class="position-popup" id="popupForm">
         <div class="form-popup">
             <h2 class="title-popup rouge-pastel"><img class="icon-regles" src="/img/aide.svg" alt="aide">Rappel des Règles</h2>
-            <p>À chaque partie, le joueur choisit l'une des trois actions suivantes :</p>
+            <p>À chaque partie, le joueur choisit l'une ces trois actions</p>
             <ul>
                 <li>pierre</li>
                 <li>papier</li>
@@ -122,18 +128,6 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
         <button class="close-popup rouge-pastel" onclick="closeForm('login')">✖</button>
     </div>
 
-    <script>
-      function openForm(id) {
-        document.getElementById(id).style.display = "block";
-        document.getElementById("background").style.display = "block";
-      }
-
-      function closeForm(id) {
-        document.getElementById(id).style.display = "none";
-        document.getElementById("background").style.display = "none";
-      }
-    </script>
 </body>
-</html>
 
-<?php
+</html>
