@@ -68,8 +68,8 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <div class="description">
         Défier <span class="rayures">Hal</span> Bender à SHIFUMI
     </div>
-    <button class="open-button jaune" onclick="">Tenter votre chance</button>
-    <button class="open-button rouge-pastel" onclick="openForm('popupForm')">Rappel des règles</button>
+    <button class="open-button jaune" onclick=""><img src="/img/joystick.svg" alt="joystick">Tenter votre chance</button>
+    <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img src="/img/aide.svg" alt="aide"> Rappel des règles</button>
     
     <div class="footer">
         <button class="connection-button score purple" onclick="">Tableau des scores</button>
@@ -86,16 +86,21 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <!-- Popup des règles -->
     <div class="position-popup" id="popupForm">
         <div class="form-popup">
-            <h2 class="title-popup rouge-pastel">Rappel des règles</h2>
+            <h2 class="title-popup rouge-pastel"><img class="icon-regles" src="/img/aide.svg" alt="aide">Rappel des Règles</h2>
             <p>À chaque partie, le joueur choisit l'une des trois actions suivantes :</p>
             <ul>
-                <li>La pierre</li>
-                <li>Le papier</li>
-                <li>Les ciseaux</li>
+                <li>pierre</li>
+                <li>papier</li>
+                <li>ciseaux</li>
             </ul>
-            <p>La pierre bat les ciseaux en les émoussant.</p>
-            <p>Le papier bat la pierre en l'enveloppant.</p>
-            <p>Les ciseaux battent le papier en la coupant.</p>
+            <ol>
+                <li><img class="taille-image" src="/img/Bouton - Pierre.svg" alt="icon pierre"></li>
+                <li><img class="taille-image" src="/img/Bouton - Papier.svg" alt="icon papier"></li>
+                <li><img class="taille-image" src="/img/Bouton - Ciseaux.svg" alt="icon ciseaux"></li>
+            </ol>
+            <p>La <strong class="mots-gras">pierre</strong> bat les <strong class="mots-gras">ciseaux</strong> en les émoussant.</p>
+            <p>Le <strong class="mots-gras">papier</strong> bat la <strong class="mots-gras">pierre</strong> en l'enveloppant.</p>
+            <p>Les <strong class="mots-gras">ciseaux</strong> battent le <strong class="mots-gras">papier</strong> en la coupant.</p>
             <p>
                 Il peut y avoir des matchs nulles si le joueur et Bender choisissent
                 la même action.
