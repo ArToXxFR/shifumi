@@ -20,7 +20,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $passwordBDD = $userInfoLogin['password'];
             if (password_verify($grain . $passwordPOST . $sel, $passwordBDD)) {
                 // On vérifie ici si les deux mots de passe correspondent
-                echo "Vous êtes connectés";
                 $sth = $dbh->prepare("SELECT pseudo, avatar.image 
             FROM utilisateurs
             INNER JOIN utilisateurs_has_avatar ON utilisateurs.id = utilisateurs_has_avatar.id_utilisateurs
@@ -35,10 +34,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $_SESSION['image'] = $userInfoConnected['image'];
 
             } else {
-                echo "Identifiants Incorrects";
+                echo "<script>openForm('login')(</script>";
             }
         } else {
-            echo "Identifiants Incorrects";
+            echo "<script>openForm('login');</script>";
         }
     }
 }
@@ -76,7 +75,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
         <button class="connection-button score purple" onclick="">Tableau des scores</button>
         <?php if(isset($_SESSION['pseudo']) && isset($_SESSION['image'])){ ?>
                 <button onclick="" class="profile cyan"><img src="<?= $_SESSION['image'] ?>" alt='avatar' class="img-profile"><span><?= $_SESSION['pseudo']?></span></button>
-                <button onclick="" class="deconnection-button rouge-pastel"><a href='deconnection.php'>Se déconnecter</a></button>
+                <button onclick="document.location.href='deconnection.php'" class="deconnection-button rouge-pastel">Se déconnecter</button>
         <?php } else { ?>
                 <button class="connection-button cyan" onclick="openForm('login')">Se connecter</button>
         <?php } ?>
@@ -118,7 +117,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
         <button class="close-popup rouge-pastel" onclick="closeForm('login')">✖</button>
     </div>
 
-        <script>
+    <script>
       function openForm(id) {
         document.getElementById(id).style.display = "block";
         document.getElementById("background").style.display = "block";

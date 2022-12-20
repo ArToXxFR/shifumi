@@ -61,3 +61,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <a href="index.php">Home</a>
 </body>
 </html>
+
+
+<?php
+
+$test = 5;
+echo isset($test);
+
+
+
+
+
+?>

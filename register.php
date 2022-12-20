@@ -25,7 +25,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                                 'password' => $password,
                 ];
                 $sth = $dbh->prepare("INSERT INTO utilisateurs(pseudo, email, password) VALUES (:pseudo, :email, :password);
-                INSERT INTO stats(id_user) VALUES (LAST_INSERT_ID())");
+                INSERT INTO utilisateurs_has_avatar(id_utilisateurs, id_avatar) VALUES (LAST_INSERT_ID(), 1);
+                INSERT INTO stats(id_user) VALUES (LAST_INSERT_ID());");
                 $isNotError = $sth->execute($infosCompte);
                 // Ici on créer un utilisateur dans la table "utilisateurs" et on associe sa clef étrangère dans la table stats
                 if($isNotError){ echo "Le compte a bien été créer";} else { echo "Erreur lors de la création du compte";};

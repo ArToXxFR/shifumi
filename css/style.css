@@ -173,16 +173,12 @@ body{
 
 .deconnection-button{
     padding: 0;
-    width: 60%  ;
+    width: 60%;
     height: 8vh;
     border: 0;
     text-decoration: none;
     font-family: "futurama";
     border: 0.2em solid black;
-}
-
-.deconnection-button:visited{
-    text-decoration: none;
 }
 
 .img-profile{
