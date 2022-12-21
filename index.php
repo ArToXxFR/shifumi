@@ -131,11 +131,11 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
         Défier <span class="rayures">Hal</span> Bender à SHIFUMI
     </div>
     <?php if (userConnected()) { ?>
-        <button class="open-button jaune" onclick="document.location.href='play.php'">Tenter votre chance</button>
+        <button class="open-button jaune" onclick="document.location.href='play.php'"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
     <?php } else { ?>
-        <button class="open-button jaune" onclick="openForm('login')"><img src="/img/joystick.svg" alt="joystick">Tenter votre chance</button>
+        <button class="open-button jaune" onclick="openForm('login')"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
     <?php } ?>
-    <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img src="/img/aide.svg" alt="aide"> Rappel des règles</button>
+    <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img class="icon-button" src="/img/aide.svg" alt="aide">Rappel des règles<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
 
     <?php require('footer.php'); ?>
 
@@ -175,7 +175,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
             <form action="index.php" method="POST" class="flex-login">
                 <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-login">
                 <input name="password" type="password" placeholder="Mot de passe" class="input-login">
-                <span>Mot de passe oublié ?</span>
+                <span class="mots-gras">Mot de passe oublié ?</span>
                 <input name="button-login" type="submit" value="Se connecter" class="button-popup cyan">
             </form>
         </div>
@@ -185,7 +185,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <div class="position-popup" id="register">
         <div class="form-popup">
             <span class="title-popup border-radius-top jaune">Création de compte</span>
-             <form action="index.php" method="POST" class="flex-login">
+            <form action="index.php" method="POST" class="flex-login">
                 <div class="first-step-register" id="first-step">
                     <span>1/2 - Vos identifiants</span>
                     <input name="email" type="email" placeholder="Taper votre email..." required>

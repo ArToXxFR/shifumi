@@ -85,8 +85,10 @@ body {
     margin: 1em auto;
 }
 
+.icon-button,
 .icon-regles {
-    padding-right: 25px;
+    padding: 0 15px;
+    vertical-align: text-top;
 }
 
 ul,
@@ -120,26 +122,26 @@ li {
     font-size: 1.2em;
 }
 
-.ombre-top{
+.ombre-top {
     box-shadow: 0 -0.2em 0.5em -0.2em black;
 }
 
-.border-radius-top{
+.border-radius-top {
     border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.border-top{
+.border-top {
     border-top: 0.2em solid black;
 }
 
-.flex-login{
+.flex-login {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.flex-login>*{
+.flex-login>* {
     margin: 0.8em auto;
 }
 
@@ -154,7 +156,7 @@ li {
     border: 0.1em solid black;
 }
 
-.button-popup{
+.button-popup {
     width: 90%;
     height: 3.5em;
     border: 3px solid black;
@@ -198,7 +200,7 @@ li {
 }
 
 .rayures {
-    text-decoration: red wavy line-through;
+    background-image: url(../img/rature_hal.svg);
 }
 
 .rouge-pastel {
@@ -255,7 +257,7 @@ li {
     height: 5vh;
 }
 
-.radio{
+.radio {
     border: 2px solid black;
     width: 1em;
     height: 1em;
@@ -265,10 +267,10 @@ li {
     justify-content: center;
     align-items: center;
     border-radius: 0.1em;
-    
+
 }
 
-.radio > .inside-radio{
+.radio>.inside-radio {
     width: 0.8em;
     height: 0.8em;
     background-color: #FFFFFF;
@@ -276,19 +278,19 @@ li {
     border-radius: 0.1em;
 }
 
-.input-hidden:checked + .radio > .inside-radio{
+.input-hidden:checked+.radio>.inside-radio {
     background-color: #000000;
     transition: all 0.3s ease;
 }
 
-.input-hidden{
+.input-hidden {
     display: none;
 }
 
-.first-step-register{
+.first-step-register {
     display: block;
 }
 
-.second-step-register{
+.second-step-register {
     display: none;
 }
