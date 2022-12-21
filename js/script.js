@@ -11,3 +11,13 @@ function openForm(id) {
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function nextstep() {
+  document.getElementById('first-step').style.display = "none"
+  document.getElementById('second-step').style.display = "block"
+}
+
+function previousstep(){
+  document.getElementById('first-step').style.display = "block"
+  document.getElementById('second-step').style.display = "none"
+}
