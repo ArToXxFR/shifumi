@@ -117,13 +117,41 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <!-- Popup du login -->
     <div class="position-popup" id="login">
         <div class="form-popup">
-            <h2 class="title-popup rouge-pastel">Se connecter</h2>
-            <form action="index.php" method="POST">
+            <span class="title-popup border-radius-top jaune">Vous n'avez pas de compte ?</span>
+            <button class="button-popup jaune" onclick="closeForm('login'); openForm('register');">Créer un nouveau compte</button>
+            <span class="title-popup border-top cyan ombre-top">Vous avez déjà un compte ?</span>
+            <form action="index.php" method="POST" class="flex-login">
                 <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-login">
                 <input name="password" type="password" placeholder="Mot de passe" class="input-login">
-                <input name="button-login" type="submit" value="Envoyer" class="input-login">
-                <span>Pas de compte ? <a href="#">En créer un</a>
+                <span>Mot de passe oublié ?</span>
+                <input name="button-login" type="submit" value="Se connecter" class="button-popup cyan">
             </form>
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('login')">✖</button>
+    </div>
+    <!-- Popup de register -->
+    <div class="position-popup" id="register">
+        <div class="form-popup">
+            <span class="title-popup border-radius-top jaune">Création de compte</span>
+             <form action="index.php" method="POST" class="flex-login">
+                <div class="first-step-register" id="first-step">
+                    <span>1/2 - Vos identifiants</span>
+                    <input type="email" placeholder="Taper votre email...">
+                    <input type="password" placeholder="Taper votre mot de passe...">
+                    
+                </div>
+                <div class="second-step-register" id="second-step">
+                    <input type="text" placeholder="Taper votre pseudo...">
+                </div>
+            </form>
+            <div class="first-step-register" id="first-step">
+                <button onclick="closeForm('register'); openForm('login');">Précédent</button>
+                <button onclick="nextstep();">Suivant</button>
+            </div>
+            <div class="second-step-register" id="second-step">
+                <button onclick="previousstep()">Précédent</button>
+                <button onclick="">Terminer</button>
+            </div>
         </div>
         <button class="close-popup rouge-pastel" onclick="closeForm('login')">✖</button>
     </div>

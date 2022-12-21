@@ -80,8 +80,8 @@ body {
     background-color: whitesmoke;
     border: 0.2em solid black;
     border-radius: 0.5em;
-    border-top-left-radius: 0.5em;
-    border-top-right-radius: 0.5em;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
     margin: 1em auto;
 }
 
@@ -101,7 +101,7 @@ li {
 }
 
 .taille-image {
-    width: 50%;
+    width: 80%;
 }
 
 .mots-gras {
@@ -109,10 +109,38 @@ li {
 }
 
 .title-popup {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    height: 12%;
     text-align: center;
     margin: 0 auto;
-    padding: 1em;
-    border-bottom: 0.1em solid black;
+    border-bottom: 0.2em solid black;
+    font-family: "futurama";
+    font-size: 1.2em;
+}
+
+.ombre-top{
+    box-shadow: 0 -0.2em 0.5em -0.2em black;
+}
+
+.border-radius-top{
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.border-top{
+    border-top: 0.2em solid black;
+}
+
+.flex-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-login>*{
+    margin: 0.8em auto;
 }
 
 .close-popup {
@@ -124,6 +152,16 @@ li {
     transform: translate(-50%);
     border-radius: 1em;
     border: 0.1em solid black;
+}
+
+.button-popup{
+    width: 90%;
+    height: 3.5em;
+    border: 3px solid black;
+    border-radius: 0.5em;
+    font-family: "futurama";
+    font-size: 1em;
+    margin: 2em auto;
 }
 
 #background {
@@ -180,7 +218,8 @@ li {
 }
 
 .input-login {
-    width: 70%;
+    width: 80%;
+    height: 10%;
     padding: 1em;
     font-size: 1em;
 }
@@ -214,4 +253,42 @@ li {
 
 .icons {
     height: 5vh;
+}
+
+.radio{
+    border: 2px solid black;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.1em;
+    
+}
+
+.radio > .inside-radio{
+    width: 0.8em;
+    height: 0.8em;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+    border-radius: 0.1em;
+}
+
+.input-hidden:checked + .radio > .inside-radio{
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+.input-hidden{
+    display: none;
+}
+
+.first-step-register{
+    display: block;
+}
+
+.second-step-register{
+    display: none;
 }

@@ -17,7 +17,9 @@ if(isset($_SESSION['pseudo']) && isset($_SESSION['image'])){
                 $icon = '/icons_jeu/ciseaux.png';
                 break;
             default:
-                echo "<script>alert('Erreur lors du choix du jeu')</script>";
+                echo "<script>alert('Erreur lors du choix du jeu');</script>";
+                unset($_POST['shifumi']);
+                header('Location: play.php');
         }
     }
 } else {
@@ -51,22 +53,25 @@ function userConnected(){
     <?php if(!$jeu_lance){ ?>
     <span> Choisis l'un des 3 signes :</span>
 
-    <form method="POST" action="play.php">
+    <form method="POST" action="play.php" onsubmit="return valider_jeu()">
         <div>
             <div>
                 <p>Pierre</p>
-                <label for="pierre"><img src="icons_jeu/pierre.png" alt="pierre"></label>
-                <input type="radio" name="shifumi" value="pierre" id="pierre">
+                <img src="icons_jeu/pierre.png" alt="pierre">
+                <input type="radio" name="shifumi" value="pierre" id="pierre" class="input-hidden" required>
+                <label for="pierre" class="radio"><div class="inside-radio"></div></label>
             </div>
             <div>
                 <p>Papier</p>
-                <label for="papier"><img src="icons_jeu/papier.png" alt="papier"></label>
-                <input type="radio" name="shifumi" value="papier" id="papier">
+                <img src="icons_jeu/papier.png" alt="papier">
+                <input type="radio" name="shifumi" value="papier" id="papier" class="input-hidden" required>
+                <label for="papier" class="radio"><div class="inside-radio"></div></label>
             </div>
             <div>
                 <p>Ciseaux</p>
-                <label for="ciseaux"><img src="icons_jeu/ciseaux.png" alt="ciseaux"></label>
-                <input type="radio" name="shifumi" value="ciseaux" id="ciseaux">
+                <img src="icons_jeu/ciseaux.png" alt="ciseaux">
+                <input type="radio" name="shifumi" value="ciseaux" id="ciseaux" class="input-hidden" required>
+                <label for="ciseaux" class="radio"><div class="inside-radio"></div></label>
             </div>
         </div>
         <input type="submit" value="Valider mon choix" class="open-button jaune">
