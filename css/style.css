@@ -251,6 +251,8 @@ li {
     height: 70%;
     border: 3px solid black;
     border-radius: 80em;
+    vertical-align: middle;
+    margin-right: 1vw;
 }
 
 .icons {
@@ -293,4 +295,29 @@ li {
 
 .second-step-register {
     display: none;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 20vw;
+    height: 30vh;
+    margin: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.choice {
+    display: block;
+    text-align: center;
+    font-family: "futurama";
+    font-size: 1.4em;
+    margin-top: 5vh;
 }
