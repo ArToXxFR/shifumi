@@ -4,43 +4,94 @@ require "connect_bdd.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['pseudo']) && !isset($_SESSION['image'])) {
-        $grain = "erwann";
-        $sel = "stpun20/20";
-        $login = [
-            'username' => $_POST['username'],
-            'email' => $_POST['username'],
-        ];
-        $sth = $dbh->prepare("SELECT pseudo, password, email FROM utilisateurs WHERE pseudo=:username OR email=:username");
-        $isNotError = $sth->execute($login);
-        $userInfoLogin = $sth->fetch(PDO::FETCH_ASSOC);
-        // L'utilisateur a saisi une email et on récupère le pseudo et le mot de passe même si il est incorrect
-        if (isset($_POST['button-login']) && $userInfoLogin) {
-            $passwordPOST = $_POST['password'];
-            $passwordBDD = $userInfoLogin['password'];
-            if (password_verify($grain . $passwordPOST . $sel, $passwordBDD)) {
-                // On vérifie ici si les deux mots de passe correspondent
-                $sth = $dbh->prepare("SELECT pseudo, avatar.image 
+        // Connexion au compte avec le login
+        if (isset($_POST['button-login'])) {
+            $grain = "erwann";
+            $sel = "stpun20/20";
+            $login = [
+                'username' => $_POST['username'],
+                'email' => $_POST['username'],
+            ];
+            $sth = $dbh->prepare("SELECT pseudo, password, email FROM utilisateurs WHERE pseudo=:username OR email=:username");
+            $isNotError = $sth->execute($login);
+            $userInfoLogin = $sth->fetch(PDO::FETCH_ASSOC);
+            // L'utilisateur a saisi une email et on récupère le pseudo et le mot de passe même si il est incorrect
+            if (isset($_POST['button-login']) && $userInfoLogin) {
+                $passwordPOST = $_POST['password'];
+                $passwordBDD = $userInfoLogin['password'];
+                if (password_verify($grain . $passwordPOST . $sel, $passwordBDD)) {
+                    // On vérifie ici si les deux mots de passe correspondent
+                    $sth = $dbh->prepare("SELECT pseudo, avatar.image 
             FROM utilisateurs
             INNER JOIN utilisateurs_has_avatar ON utilisateurs.id = utilisateurs_has_avatar.id_utilisateurs
             INNER JOIN avatar ON avatar.id = utilisateurs_has_avatar.id_avatar
             WHERE utilisateurs.email=:email");
-                $isNotError = $sth->execute(['email' => $userInfoLogin['email']]);
-                $userInfoConnected = $sth->fetch(PDO::FETCH_ASSOC);
-                if (!$isNotError) {
-                    echo "Impossible de récupérer les infos de l'utilisateur connecté";
+                    $isNotError = $sth->execute(['email' => $userInfoLogin['email']]);
+                    $userInfoConnected = $sth->fetch(PDO::FETCH_ASSOC);
+                    if (!$isNotError) {
+                        echo "Impossible de récupérer les infos de l'utilisateur connecté";
+                    } else {
+                        $_SESSION['pseudo'] = $userInfoConnected['pseudo'];
+                        $_SESSION['image'] = $userInfoConnected['image'];
+                    }
+                } else {
+                    echo "<script>openForm('login');</script>";
+                    $incorrectId = true;
                 }
-                $_SESSION['pseudo'] = $userInfoConnected['pseudo'];
-                $_SESSION['image'] = $userInfoConnected['image'];
             } else {
                 echo "<script>openForm('login');</script>";
                 $incorrectId = true;
+            } 
+        // Création d'un nouveau compte
+        } else if (isset($_POST['button-register'])){
+            $sth = $dbh->prepare("SELECT email FROM utilisateurs WHERE email=:email");
+            $isNotError = $sth->execute(['email' => strtolower($_POST['email'])]);
+            if(!$isNotError){echo "Impossible de récupérer l'email";};
+            $emailAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
+            $sth = $dbh->prepare("SELECT pseudo FROM utilisateurs WHERE pseudo=:pseudo");
+            $isNotError = $sth->execute(['pseudo' => $_POST['pseudo']]);
+            if(!$isNotError){echo "<script>alert('Impossible de récupérer le pseudo')</script>";};
+            $pseudoAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
+            $sth = $dbh->prepare('SELECT id FROM avatar WHERE image=:image');
+            $isNotError = $sth->execute(['image' => $_POST['avatar']]);
+            if(!$isNotError){echo "<script>alert('Impossible de récupérer l'avatar')</script>";};
+            $id_avatar = $sth->fetch(PDO::FETCH_ASSOC);
+            // On cherche si le pseudo ou l'email est déjà présent dans la base de donnée
+            if(!$emailAlreadyExist){
+                if(!$pseudoAlreadyExist){
+                    if($_POST['password'] === $_POST['confirmPassword']){
+                        // Quand on arrive ici, il n'y a pas d'email déjà enregistrée(majuscules comprises) ni de pseudo et les deux mots de passes enregistrés sont les mêmes
+                        $grain = "erwann";
+                        $sel = "stpun20/20";
+                        $password = password_hash($grain.$_POST['password'].$sel, PASSWORD_ARGON2ID);
+                        // Ici le mot de passe a été crypté avec la methode ARGON2ID avec un grain de sel ce qui rend la sécurité maximale
+                        $infosCompte = ['pseudo' => $_POST['pseudo'],
+                                        'email' => strtolower($_POST['email']),
+                                        'password' => $password,
+                                        'id_avatar' => $id_avatar['id'],
+                        ];
+                        $sth = $dbh->prepare("INSERT INTO utilisateurs(pseudo, email, password) VALUES (:pseudo, :email, :password);
+                        INSERT INTO utilisateurs_has_avatar(id_utilisateurs, id_avatar) VALUES (LAST_INSERT_ID(), :id_avatar);
+                        INSERT INTO stats(id_user) VALUES (LAST_INSERT_ID());");
+                        $isNotError = $sth->execute($infosCompte);
+                        // Ici on créer un utilisateur dans la table "utilisateurs" et on associe sa clef étrangère dans la table stats
+                        if($isNotError){ echo "Le compte a bien été créer";} else { echo "Erreur lors de la création du compte";};
+                    } else {
+                        echo "<script>alert('Les deux mots de passe ne correspondent pas')</script>";
+                    }
+                } else {
+                    echo "<script>alert('Pseudo déjà utilisée')</script>";
+                }
+            } else {
+                echo "<script>alert('Adresse email déjà utilisée')</script>";
             }
-        } else {
-            echo "<script>openForm('login');</script>";
-            $incorrectId = true;
         }
     }
 }
+
+$sth = $dbh->prepare('SELECT id, nom, image FROM avatar;');
+$isNotError = $sth->execute();
+$avatar_profile = $sth->fetchAll(PDO::FETCH_ASSOC);
 
 function userConnected()
 {
@@ -66,6 +117,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/style.css" rel="stylesheet">
     <script src="js/script.js"></script>
+
     <title>Shifumi</title>
 </head>
 
@@ -136,23 +188,32 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
             <form action="index.php" method="POST" class="flex-login">
                 <div class="first-step-register" id="first-step">
                     <span>1/2 - Vos identifiants</span>
-                    <input type="email" placeholder="Taper votre email...">
-                    <input type="password" placeholder="Taper votre mot de passe...">
+                    <input name="email" type="email" placeholder="Taper votre email..." required>
+                    <input type="password" name="password" placeholder="Taper votre mot de passe..." required>
+                    <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
                 </div>
                 <div class="second-step-register" id="second-step">
-                    <input type="text" placeholder="Taper votre pseudo...">
+                    <span>2/2 - Personnalisation</span>
+                    <input name="pseudo" type="text" placeholder="Taper votre pseudo..." required>
+                    <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
+                        <?php foreach($avatar_profile as $avatar){ ?>
+                            <option value="<?= $avatar['image']?>"><?= $avatar['nom']?></option>
+                        <?php } ?>
+                    </select>
+                    <img src="/avatar/avatars_fry.png" alt="avatar" id="avatar" width="50px">
+                    <input type="submit" name="button-register" value="Terminer">
                 </div>
             </form>
-            <div class="first-step-register" id="first-step">
+            <div class="first-step-register" id="first-step-buttons">
                 <button onclick="closeForm('register'); openForm('login');">Précédent</button>
                 <button onclick="nextstep();">Suivant</button>
             </div>
-            <div class="second-step-register" id="second-step">
+            <div class="second-step-register" id="second-step-buttons">
                 <button onclick="previousstep()">Précédent</button>
-                <button onclick="">Terminer</button>
+                
             </div>
         </div>
-        <button class="close-popup rouge-pastel" onclick="closeForm('login')">✖</button>
+        <button class="close-popup rouge-pastel" onclick="closeForm('login'); closeForm('register');">✖</button>
     </div>
 
 </body>
