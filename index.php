@@ -41,41 +41,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 echo "<script>openForm('login');</script>";
                 $incorrectId = true;
-            } 
-        // Création d'un nouveau compte
-        } else if (isset($_POST['button-register'])){
+            }
+            // Création d'un nouveau compte
+        } else if (isset($_POST['button-register'])) {
             $sth = $dbh->prepare("SELECT email FROM utilisateurs WHERE email=:email");
             $isNotError = $sth->execute(['email' => strtolower($_POST['email'])]);
-            if(!$isNotError){echo "Impossible de récupérer l'email";};
+            if (!$isNotError) {
+                echo "Impossible de récupérer l'email";
+            };
             $emailAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
             $sth = $dbh->prepare("SELECT pseudo FROM utilisateurs WHERE pseudo=:pseudo");
             $isNotError = $sth->execute(['pseudo' => $_POST['pseudo']]);
-            if(!$isNotError){echo "<script>alert('Impossible de récupérer le pseudo')</script>";};
+            if (!$isNotError) {
+                echo "<script>alert('Impossible de récupérer le pseudo')</script>";
+            };
             $pseudoAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
             $sth = $dbh->prepare('SELECT id FROM avatar WHERE image=:image');
             $isNotError = $sth->execute(['image' => $_POST['avatar']]);
-            if(!$isNotError){echo "<script>alert('Impossible de récupérer l'avatar')</script>";};
+            if (!$isNotError) {
+                echo "<script>alert('Impossible de récupérer l'avatar')</script>";
+            };
             $id_avatar = $sth->fetch(PDO::FETCH_ASSOC);
             // On cherche si le pseudo ou l'email est déjà présent dans la base de donnée
-            if(!$emailAlreadyExist){
-                if(!$pseudoAlreadyExist){
-                    if($_POST['password'] === $_POST['confirmPassword']){
+            if (!$emailAlreadyExist) {
+                if (!$pseudoAlreadyExist) {
+                    if ($_POST['password'] === $_POST['confirmPassword']) {
                         // Quand on arrive ici, il n'y a pas d'email déjà enregistrée(majuscules comprises) ni de pseudo et les deux mots de passes enregistrés sont les mêmes
                         $grain = "erwann";
                         $sel = "stpun20/20";
-                        $password = password_hash($grain.$_POST['password'].$sel, PASSWORD_ARGON2ID);
+                        $password = password_hash($grain . $_POST['password'] . $sel, PASSWORD_ARGON2ID);
                         // Ici le mot de passe a été crypté avec la methode ARGON2ID avec un grain de sel ce qui rend la sécurité maximale
-                        $infosCompte = ['pseudo' => $_POST['pseudo'],
-                                        'email' => strtolower($_POST['email']),
-                                        'password' => $password,
-                                        'id_avatar' => $id_avatar['id'],
+                        $infosCompte = [
+                            'pseudo' => $_POST['pseudo'],
+                            'email' => strtolower($_POST['email']),
+                            'password' => $password,
+                            'id_avatar' => $id_avatar['id'],
                         ];
                         $sth = $dbh->prepare("INSERT INTO utilisateurs(pseudo, email, password) VALUES (:pseudo, :email, :password);
                         INSERT INTO utilisateurs_has_avatar(id_utilisateurs, id_avatar) VALUES (LAST_INSERT_ID(), :id_avatar);
                         INSERT INTO stats(id_user) VALUES (LAST_INSERT_ID());");
                         $isNotError = $sth->execute($infosCompte);
                         // Ici on créer un utilisateur dans la table "utilisateurs" et on associe sa clef étrangère dans la table stats
-                        if($isNotError){ echo "Le compte a bien été créer";} else { echo "Erreur lors de la création du compte";};
+                        if ($isNotError) {
+                            echo "Le compte a bien été créer";
+                        } else {
+                            echo "Erreur lors de la création du compte";
+                        };
                     } else {
                         echo "<script>alert('Les deux mots de passe ne correspondent pas')</script>";
                     }
@@ -196,8 +207,8 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
                     <span>2/2 - Personnalisation</span>
                     <input name="pseudo" type="text" placeholder="Taper votre pseudo..." required>
                     <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
-                        <?php foreach($avatar_profile as $avatar){ ?>
-                            <option value="<?= $avatar['image']?>"><?= $avatar['nom']?></option>
+                        <?php foreach ($avatar_profile as $avatar) { ?>
+                            <option value="<?= $avatar['image'] ?>"><?= $avatar['nom'] ?></option>
                         <?php } ?>
                     </select>
                     <img src="/avatar/avatars_fry.png" alt="avatar" id="avatar" width="50px">
@@ -210,12 +221,22 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="second-step-register" id="second-step-buttons">
                 <button onclick="previousstep()">Précédent</button>
-                
+
             </div>
         </div>
         <button class="close-popup rouge-pastel" onclick="closeForm('login'); closeForm('register');">✖</button>
     </div>
-
+    <!-- Popup de deconnection -->
+    <div class="position-popup" id="deconnection">
+        <div class="form-popup">
+            <h2 class="title-popup rouge-pastel">Se déconnecter</h2>
+            <span class="choice">Etes-vous sur de vouloir vous déconnecter ?</span>
+            <button onclick="document.location.href='deconnection.php'" class="button-popup rouge-pastel"> <img class="icon-button" src="img/icon_exit.svg" alt="icon exit">Oui je veux me déconnecter<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
+            <button onclick="document.location.href='index.php'" class="button-popup jaune">C'était une erreur, annuler</button>
+            <img src="bender_message/bender_terminator.svg" alt="Au revoir de bender">
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('deconnection')">✖</button>
+    </div>
 </body>
 
 </html>
