@@ -133,21 +133,18 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-    <div class="flex">
-        <div class="background-title">
-            <h1 class="title textmulticolor">SHIFUMI</h1>
+    <?php require('header.php'); ?>
+    <div class="page_container">
+        <div class="description">
+            Défier <span class="rayures">Hal</span> Bender à SHIFUMI
         </div>
+        <?php if (userConnected()) { ?>
+            <button class="open-button jaune" onclick="document.location.href='play.php'"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
+        <?php } else { ?>
+            <button class="open-button jaune" onclick="openForm('login')"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
+        <?php } ?>
+        <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img class="icon-button" src="/img/aide.svg" alt="aide">Rappel des règles<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
     </div>
-    <div class="description">
-        Défier <span class="rayures">Hal</span> Bender à SHIFUMI
-    </div>
-    <?php if (userConnected()) { ?>
-        <button class="open-button jaune" onclick="document.location.href='play.php'"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
-    <?php } else { ?>
-        <button class="open-button jaune" onclick="openForm('login')"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
-    <?php } ?>
-    <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img class="icon-button" src="/img/aide.svg" alt="aide">Rappel des règles<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
-
     <?php require('footer.php'); ?>
 
     <!-- Fond noir transparent lors des popup -->
