@@ -176,7 +176,7 @@ body * {
 /* Pour fixer le header en haut du site */
 
 header {
-    z-index: -1;
+    z-index: 0;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -227,7 +227,7 @@ header h1 {
 /* Le padding top / bottom représente le height du header et du footer */
 
 .page_container {
-    z-index: -1;
+    z-index: 0;
     padding-top: 80px;
     padding-bottom: 117px;
     padding-left: 20px;
@@ -320,10 +320,10 @@ header h1 {
 /* Pour fixer le footer en bas du site */
 
 footer {
-    z-index: -1;
+    z-index: 0;
     position: fixed;
     bottom: 0;
-    height: 117px;
+    height: fit-content;
     width: 100%;
 
 }
@@ -387,6 +387,21 @@ footer button.cyan {
     background: #7FCFDA;
 }
 
+footer button.profile,
+footer button.deconnection-button {
+    float: left;
+
+}
+
+footer button.profile {
+    border-right: none;
+    width: calc(50% - 1.5px)
+}
+
+footer button.deconnection-button {
+    width: calc(50% + 1.5px)
+}
+
 /* -------------------------------------------------------------------------------------------------------------
    POPUP
 ------------------------------------------------------------------------------------------------------------- */
@@ -395,7 +410,7 @@ footer button.cyan {
 /* Il faudra faire en sorte que cliquer dessus ferme aussi la popup comme le bouton pour la fermer » */
 
 .position-popup::before {
-    z-index: -1;
+    z-index: 0;
     content: "";
     position: absolute;
     top: 0;
@@ -406,10 +421,10 @@ footer button.cyan {
 }
 
 /* Container de la popup */
-/* Le seule à ne pas avoir de « z-index: -1 » pour passer au-dessus des autres éléments */
+/* Le seule à ne pas avoir de « z-index: 0 » pour passer au-dessus des autres éléments */
 
 .position-popup {
-    /* z-index: 1; */
+    z-index: 1;
     display: none;
     position: absolute;
     top: 0;
