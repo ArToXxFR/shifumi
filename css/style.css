@@ -156,6 +156,11 @@ body * {
     line-height: 1.5;
 }
 
+/* Pour afficher les mots en gras */
+
+.mots_gras {
+    font-weight: bold;
+}
 
 
 /* -------------------------------------------------------------------------------------------------------------
@@ -311,6 +316,21 @@ header h1 {
 
 .page_container button.rouge-pastel {
     background: #E85581;
+}
+
+/* Icon des avatars du joueur */
+
+.img_profile {
+    border-radius: 1em;
+    height: 70%;
+    border: 3px solid black;
+    border-radius: 80em;
+    vertical-align: middle;
+    margin-right: 1vw;
+}
+
+.size_img_profile{
+    height: 15%;
 }
 
 /* -------------------------------------------------------------------------------------------------------------
@@ -511,6 +531,103 @@ footer button.deconnection-button {
     font-family: "Font Awesome Solid";
     font-size: 30px;
     line-height: 1;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   PAGE DE JEU - play.php
+------------------------------------------------------------------------------------------------------------- */
+
+/* Cacher l'ancien bouton du input type radio et le transformer en carré */
+
+.radio {
+    border: 2px solid black;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.1em;
+}
+
+.radio>.inside-radio {
+    width: 0.8em;
+    height: 0.8em;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+    border-radius: 0.1em;
+}
+
+.input-hidden:checked+.radio>.inside-radio {
+    background-color: #000000;
+    transition: all 0.3s ease;
+}
+
+.input-hidden {
+    display: none;
+}
+
+/* Aligner les cases lors du choix de pierre, papier ou ciseaux */
+
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 20vw;
+    height: 30vh;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Animation pour afficher le résultat */
+
+.fade_out{
+    display: block;
+    opacity: 0;
+	animation-name: fadeOutOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+
+}
+
+.fade_in{
+    display: block;
+    opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+        display: block;
+	}
+}
+
+@keyframes fadeOutOpacity {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+        display: none;
+	}
 }
 
 
@@ -791,7 +908,6 @@ li {
     justify-content: center;
     align-items: center;
     border-radius: 0.1em;
-
 }
 
 .radio>.inside-radio {

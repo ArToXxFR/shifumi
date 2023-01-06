@@ -33,6 +33,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     } else {
                         $_SESSION['pseudo'] = $userInfoConnected['pseudo'];
                         $_SESSION['image'] = $userInfoConnected['image'];
+                        $_SESSION['tour'] = 0;
+                        $_SESSION['choix_bender'] = [];
+                        $_SESSION['compteur_choix'] = ['pierre' => 0, 'papier' => 0, 'ciseaux' => 0];
+                    }
+                    $sth = $dbh->prepare('SELECT win, loose, null FROM stats 
+                    INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user 
+                    WHERE utilisateurs.email=:email');
+                    $isNotError = $sth->execute(['email' => $userInfoLogin['email']]);
+                    $_SESSION['stats_user'] = $sth->fetch(PDO::FETCH_ASSOC);
+                    if(!$isNotError){
+                        echo "Impossible de récupérer les stats de l'utilisateur connecté";
                     }
                 } else {
                     echo "<script>openForm('login');</script>";
@@ -139,8 +150,8 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
             Défier <span class="rayures">Hal</span> Bender à SHIFUMI
         </div>
         <?php if (userConnected()) { ?>
-            <button class="open-button jaune" onclick="document.location.href='play.php'"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
-        <?php } else { ?>
+                <button class="open-button jaune" onclick="document.location.href='play.php'"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
+            <?php } else { ?>
             <button class="open-button jaune" onclick="openForm('login')"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
         <?php } ?>
         <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img class="icon-button" src="/img/aide.svg" alt="aide">Rappel des règles<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
@@ -164,9 +175,9 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
                 <li><img class="taille-image" src="/img/Bouton - Papier.svg" alt="icon papier"></li>
                 <li><img class="taille-image" src="/img/Bouton - Ciseaux.svg" alt="icon ciseaux"></li>
             </ol>
-            <p>La <strong class="mots-gras">pierre</strong> bat les <strong class="mots-gras">ciseaux</strong> en les émoussant.</p>
-            <p>Le <strong class="mots-gras">papier</strong> bat la <strong class="mots-gras">pierre</strong> en l'enveloppant.</p>
-            <p>Les <strong class="mots-gras">ciseaux</strong> battent le <strong class="mots-gras">papier</strong> en la coupant.</p>
+            <p>La <strong class="mots_gras">pierre</strong> bat les <strong class="mots_gras">ciseaux</strong> en les émoussant.</p>
+            <p>Le <strong class="mots_gras">papier</strong> bat la <strong class="mots_gras">pierre</strong> en l'enveloppant.</p>
+            <p>Les <strong class="mots_gras">ciseaux</strong> battent le <strong class="mots_gras">papier</strong> en la coupant.</p>
             <p>
                 Il peut y avoir des matchs nulles si le joueur et Bender choisissent
                 la même action.
@@ -183,7 +194,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
             <form action="index.php" method="POST" class="flex-login">
                 <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-login">
                 <input name="password" type="password" placeholder="Mot de passe" class="input-login">
-                <span class="mots-gras">Mot de passe oublié ?</span>
+                <span class="mots_gras">Mot de passe oublié ?</span>
                 <input name="button-login" type="submit" value="Se connecter" class="button-popup cyan">
             </form>
         </div>
