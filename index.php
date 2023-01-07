@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     WHERE utilisateurs.email=:email');
                     $isNotError = $sth->execute(['email' => $userInfoLogin['email']]);
                     $_SESSION['stats_user'] = $sth->fetch(PDO::FETCH_ASSOC);
-                    if(!$isNotError){
+                    if (!$isNotError) {
                         echo "Impossible de récupérer les stats de l'utilisateur connecté";
                     }
                 } else {
@@ -150,11 +150,11 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
             Défier <span class="rayures">Hal</span> Bender à SHIFUMI
         </div>
         <?php if (userConnected()) { ?>
-                <button class="open-button jaune" onclick="document.location.href='play.php'"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
-            <?php } else { ?>
-            <button class="open-button jaune" onclick="openForm('login')"><img class="icon-button" src="/img/joystick.svg" alt="joystick">Tenter votre chance<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
+            <button class="open-button jaune" onclick="document.location.href='play.php'">Tenter votre chance</button>
+        <?php } else { ?>
+            <button class="open-button jaune" onclick="openForm('login')">Tenter votre chance</button>
         <?php } ?>
-        <button class="open-button rouge-pastel" onclick="openForm('popupForm')"><img class="icon-button" src="/img/aide.svg" alt="aide">Rappel des règles<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
+        <button class="open-button rouge-pastel" onclick="openForm('popupForm')">Rappel des règles</button>
     </div>
     <?php require('footer.php'); ?>
 
@@ -163,8 +163,8 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
     <!-- Popup des règles -->
     <div class="position-popup" id="popupForm">
         <div class="form-popup">
-            <h2 class="title-popup rouge-pastel"><img class="icon-regles" src="/img/aide.svg" alt="aide">Rappel des Règles</h2>
-            <p>À chaque partie, le joueur choisit l'une ces trois actions</p>
+            <h2 class="title-popup rouge-pastel">Rappel des Règles</h2>
+            <p>À chaque partie, le joueur choisit l'une de ces trois actions</p>
             <ul>
                 <li>pierre</li>
                 <li>papier</li>
@@ -239,7 +239,7 @@ $image = $sth->fetch(PDO::FETCH_ASSOC);
         <div class="form-popup">
             <h2 class="title-popup rouge-pastel">Se déconnecter</h2>
             <span class="choice">Etes-vous sur de vouloir vous déconnecter ?</span>
-            <button onclick="document.location.href='deconnection.php'" class="button-popup rouge-pastel"> <img class="icon-button" src="img/icon_exit.svg" alt="icon exit">Oui je veux me déconnecter<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
+            <button onclick="document.location.href='deconnection.php'" class="button-popup rouge-pastel">Oui je veux me déconnecter</button>
             <button onclick="document.location.href='index.php'" class="button-popup jaune">C'était une erreur, annuler</button>
             <img src="bender_message/bender_terminator.svg" alt="Au revoir de bender">
         </div>

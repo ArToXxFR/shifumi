@@ -18,7 +18,12 @@ body {
     height: 100vh;
 }
 
-h1, h2, h3, h4, a, p {
+h1,
+h2,
+h3,
+h4,
+a,
+p {
     margin: 0
 }
 
@@ -43,10 +48,10 @@ h1, h2, h3, h4, a, p {
 @font-face {
     font-family: "Futura Medium";
     src:
-      url("../fonts/futura_medium.ttf") format("ttf"),
-      url("../fonts/futura_medium.woff") format("woff"),
-      url("../fonts/futura_medium.woff2") format("woff2");
-  }
+        url("../fonts/futura_medium.ttf") format("ttf"),
+        url("../fonts/futura_medium.woff") format("woff"),
+        url("../fonts/futura_medium.woff2") format("woff2");
+}
 
 @font-face {
     font-family: "Open Sans Regular";
@@ -167,7 +172,7 @@ body * {
    BOUTON
 ------------------------------------------------------------------------------------------------------------- */
 
-    /* button {
+/* button {
         max-width: 800px;
         display: block;
         margin: 0 auto;
@@ -216,7 +221,7 @@ header .background-title::before {
     background-repeat: no-repeat;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
 
 /* Pour cacher le h1 */
@@ -329,7 +334,7 @@ header h1 {
     margin-right: 1vw;
 }
 
-.size_img_profile{
+.size_img_profile {
     height: 15%;
 }
 
@@ -437,7 +442,8 @@ footer button.deconnection-button {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.7);;
+    background: rgba(0, 0, 0, 0.7);
+    ;
 }
 
 /* Container de la popup */
@@ -501,7 +507,7 @@ footer button.deconnection-button {
 
 /* Pour rajouter un espace de 30px au 1er p après l'en-tête */
 
-.position-popup .form-popup .title-popup + p {
+.position-popup .form-popup .title-popup+p {
     margin-top: 30px;
 }
 
@@ -591,43 +597,45 @@ footer button.deconnection-button {
 
 /* Animation pour afficher le résultat */
 
-.fade_out{
+.fade_out {
     display: block;
     opacity: 0;
-	animation-name: fadeOutOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 2s;
+    animation-name: fadeOutOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
 
 }
 
-.fade_in{
+.fade_in {
     display: block;
     opacity: 1;
-	animation-name: fadeInOpacity;
-	animation-iteration-count: 1;
-	animation-timing-function: ease-in;
-	animation-duration: 2s;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
 }
 
 @keyframes fadeInOpacity {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
         display: block;
-	}
+    }
 }
 
 @keyframes fadeOutOpacity {
-	0% {
-		opacity: 1;
-	}
-	100% {
-		opacity: 0;
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
         display: none;
-	}
+    }
 }
 
 
@@ -730,6 +738,10 @@ footer button.deconnection-button {
     vertical-align: text-top;
 }
 
+*/
+
+/* Pour la popup rappel des règles */
+
 ul,
 li {
     display: inline-block;
@@ -745,10 +757,7 @@ li {
     width: 80%;
 }
 
-.mots-gras {
-    font-weight: bold;
-}
-
+/*
 .title-popup {
     display: inline-block;
     vertical-align: middle;
@@ -841,15 +850,21 @@ li {
 .rayures {
     background-image: url(../img/rature_hal.svg);
 }
+*/
+
+/* Pour les boutons de la popup déconnection*/
 
 .rouge-pastel {
     background-color: #E85581;
 }
 
+
 .jaune {
     background-color: #FDDE58;
 }
 
+*/
+/*
 .cyan {
     background-color: #7FCFDA;
 }
@@ -958,4 +973,5 @@ li {
     font-family: "futurama";
     font-size: 1.4em;
     margin-top: 5vh;
-} */
+} 
+*/

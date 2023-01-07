@@ -12,7 +12,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
         $resultat_jeu = $_SESSION['resultat'][1];
         $icon_choix_utilisateur = icon_jeu($choix_utilisateur);
         $icon_choix_bender = icon_jeu($choix_bender);
-        if($_SESSION['tour'] == 5){
+        if ($_SESSION['tour'] == 5) {
             $_SESSION['tour'] = 0;
             $_SESSION['choix_bender'] = [];
             $_SESSION['compteur_choix'] = ['pierre' => 0, 'papier' => 0, 'ciseaux' => 0];
@@ -34,7 +34,8 @@ function userConnected()
 
 /* Affichage de l'icon selectionné par le joueur ou par bender */
 
-function icon_jeu($choix) {
+function icon_jeu($choix)
+{
     switch ($choix) {
         case 'pierre':
             $icon = '/icons_jeu/pierre.png';
@@ -73,9 +74,9 @@ function icon_jeu($choix) {
 <body>
     <?php require('header.php'); ?>
     <?php if (!$jeu_lance) { ?>
-    
+
         <div class="page_container">
-        <div class="description mots_gras"> Choisis l'un des 3 signes :</div>
+            <div class="description mots_gras"> Choisis l'un des 3 signes :</div>
             <form method="POST" action="choix_bender.php" onsubmit="return valider_jeu()">
                 <div class="container">
                     <div class="box">
@@ -105,11 +106,11 @@ function icon_jeu($choix) {
                 </div>
                 <button type="submit" class="jaune">Valider mon choix</button>
             </form>
-            <button onclick="document.location.href='index.php'" class="button rouge-pastel">Annuler la partie<img class="icon-button" src="img/fleche.svg" alt="flèche"> </button>
+            <button onclick="document.location.href='index.php'" class="button rouge-pastel">Annuler la partie</button>
         </div>
     <?php } else { ?>
         <div class="page_container fade_out">
-                <div class="container">
+            <div class="container">
                 <div class="futura_28px_medium"> C'est parti... </div>
                 <div class="futura_28px_medium"> SHI... FU... MI... </div>
                 <div class="container">
@@ -126,28 +127,31 @@ function icon_jeu($choix) {
                 </div>
             </div>
         </div>
-        
+
         <div class="page_container fade_in">
-            <?php switch($resultat_jeu){
+            <?php switch ($resultat_jeu) {
                 case 'victoire': ?>
                     <span> Bravo tu as gagné ! </span>
-                <?php break; case 'defaite': ?>
+                <?php break;
+                case 'defaite': ?>
                     <span> Tu as perdu ! </span>
-                <?php break; case 'null': ?>
+                <?php break;
+                case 'null': ?>
                     <span> Match nul ! </span>
-                <?php break; } ?>
-                <div class="box">
-                    <span><?= $_SESSION['pseudo'] ?></span>
-                    <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
-                    <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
-                </div>
-                <div class="box">
-                    <span>Bender</span>
-                    <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
-                    <img src="./avatar/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
-                </div>
-                <button onclick="document.location.href='index.php'" class="">Accueil<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
-                <button onclick="document.location.href='play.php'" class="">Rejouer<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
+            <?php break;
+            } ?>
+            <div class="box">
+                <span><?= $_SESSION['pseudo'] ?></span>
+                <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
+                <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
+            </div>
+            <div class="box">
+                <span>Bender</span>
+                <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
+                <img src="./avatar/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
+            </div>
+            <button onclick="document.location.href='index.php'" class="">Accueil<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
+            <button onclick="document.location.href='play.php'" class="">Rejouer<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
         </div>
 
 
