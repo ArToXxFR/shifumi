@@ -1,6 +1,8 @@
 <?php session_start();
 
-require "connect_bdd.php";
+require_once __DIR__ . "/includes/connect_bdd.php";
+require_once __DIR__ . "/includes/functions_request_bdd.php";
+require_once __DIR__ . "/includes/functions_shifumi.php";
 $jeu_lance = false;
 
 if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
@@ -23,40 +25,6 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
     header('Location: index.php');
 }
 
-function userConnected()
-{
-    if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-/* Affichage de l'icon selectionné par le joueur ou par bender */
-
-function icon_jeu($choix)
-{
-    switch ($choix) {
-        case 'pierre':
-            $icon = '/icons_jeu/pierre.png';
-            break;
-        case 'papier':
-            $icon = '/icons_jeu/papier.png';
-            break;
-        case 'ciseaux':
-            $icon = '/icons_jeu/ciseaux.png';
-            break;
-        default:
-            echo "<script>alert('Erreur lors du choix du jeu');</script>";
-            unset($_POST['shifumi']);
-            header('Location: play.php');
-    }
-
-    return $icon;
-}
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +40,7 @@ function icon_jeu($choix)
 </head>
 
 <body>
-    <?php require('header.php'); ?>
+    <?php require_once __DIR__ . "/includes/header.php"; ?>
     <?php if (!$jeu_lance) { ?>
 
         <div class="page_container">
@@ -122,7 +90,7 @@ function icon_jeu($choix)
                     <div class="box">
                         <span>Bender</span>
                         <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
-                        <img src="./avatar/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
+                        <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
                     </div>
                 </div>
             </div>
@@ -138,6 +106,7 @@ function icon_jeu($choix)
                 <?php break;
                 case 'null': ?>
                     <span> Match nul ! </span>
+
             <?php break;
             } ?>
             <div class="box">
@@ -148,7 +117,7 @@ function icon_jeu($choix)
             <div class="box">
                 <span>Bender</span>
                 <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
-                <img src="./avatar/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
+                <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
             </div>
             <button onclick="document.location.href='index.php'" class="">Accueil<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
             <button onclick="document.location.href='play.php'" class="">Rejouer<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
@@ -156,7 +125,7 @@ function icon_jeu($choix)
 
 
     <?php } ?>
-    <?php require "footer.php"; ?>
+    <?php require_once __DIR__ . "/includes/footer.php"; ?>
 
 </body>
 

@@ -546,23 +546,23 @@ footer button.deconnection-button {
 /* Cacher l'ancien bouton du input type radio et le transformer en carré */
 
 .radio {
-    border: 2px solid black;
-    width: 1em;
-    height: 1em;
+    border: 3px solid black;
+    width: 1.5em;
+    height: 1.5em;
     display: inline-block;
     vertical-align: middle;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 0.1em;
+    border-radius: 0.3em;
 }
 
 .radio>.inside-radio {
-    width: 0.8em;
-    height: 0.8em;
+    width: 1em;
+    height: 1em;
     background-color: #FFFFFF;
     transition: all 0.3s ease;
-    border-radius: 0.1em;
+    border-radius: 0.15em;
 }
 
 .input-hidden:checked+.radio>.inside-radio {
@@ -899,6 +899,7 @@ li {
     font-family: "futurama";
     border: 0.2em solid black;
 }
+*/
 
 .img-profile {
     border-radius: 1em;
@@ -909,6 +910,7 @@ li {
     margin-right: 1vw;
 }
 
+/*
 .icons {
     height: 5vh;
 }
