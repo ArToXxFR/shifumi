@@ -3,7 +3,6 @@
 require_once __DIR__ . "/includes/connect_bdd.php";
 require_once __DIR__ . "/includes/constants.php";
 require_once __DIR__ . "/includes/functions_request_bdd.php";
-require_once __DIR__ . "/includes/functions_shifumi.php";
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 

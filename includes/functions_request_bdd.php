@@ -1,5 +1,15 @@
 <?php
 
+/* Vérification si les joueur est connecté */
+
+function userConnected(){
+    if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 /* Récupère toutes les informations sur l'utilisateur lorsqu'il se connecte */
 
 function users_infos($dbh, $userInfoLogin){

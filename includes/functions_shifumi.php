@@ -1,15 +1,5 @@
 <?php
 
-/* Vérification si les joueur est connecté */
-
-function userConnected(){
-    if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
 /* Affichage de l'icon selectionné par le joueur ou par bender */
 
 function icon_jeu($choix)
