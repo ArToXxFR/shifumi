@@ -2,8 +2,8 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le : dim. 08 jan. 2023 à 22:19
+-- Hôte : 127.0.0.1:3308
+-- Généré le : lun. 09 jan. 2023 à 11:10
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -72,29 +72,31 @@ CREATE TABLE IF NOT EXISTS `stats` (
   `loose` int(11) NOT NULL DEFAULT '0',
   `nulle` int(11) NOT NULL DEFAULT '0',
   `id_user` int(11) NOT NULL,
+  `creation_compte` timestamp NULL DEFAULT NULL,
   `date_first_game` timestamp NULL DEFAULT NULL,
   `date_last_game` timestamp NULL DEFAULT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `stats`
 --
 
-INSERT INTO `stats` (`id`, `win`, `loose`, `nulle`, `id_user`, `date_first_game`, `date_last_game`) VALUES
-(2, 4, 1, 1, 9, '2023-01-08 21:32:02', NULL),
-(3, 1, 0, 0, 10, NULL, NULL),
-(4, 1, 0, 0, 11, NULL, NULL),
-(5, 1, 0, 0, 12, NULL, NULL),
-(6, 1, 0, 0, 13, NULL, NULL),
-(7, 1, 0, 0, 14, NULL, NULL),
-(8, 0, 1, 2, 15, '2023-01-08 20:36:58', NULL),
-(9, 0, 0, 0, 16, NULL, NULL),
-(10, 0, 0, 0, 17, NULL, NULL),
-(11, 0, 0, 0, 18, '2023-01-08 21:32:02', NULL),
-(12, 0, 0, 0, 19, NULL, NULL),
-(13, 0, 0, 0, 20, NULL, NULL),
-(14, 1, 1, 2, 21, '2023-01-08 22:10:17', NULL);
+INSERT INTO `stats` (`id`, `win`, `loose`, `nulle`, `id_user`, `creation_compte`, `date_first_game`, `date_last_game`, `ip`) VALUES
+(2, 5, 4, 1, 9, NULL, '2023-01-09 10:54:07', NULL, '::1'),
+(3, 1, 0, 0, 10, NULL, NULL, NULL, ''),
+(4, 1, 0, 0, 11, NULL, NULL, NULL, ''),
+(5, 1, 0, 0, 12, NULL, NULL, NULL, ''),
+(6, 1, 0, 0, 13, NULL, NULL, NULL, ''),
+(7, 1, 0, 0, 14, NULL, NULL, NULL, ''),
+(8, 0, 1, 2, 15, NULL, '2023-01-08 20:36:58', NULL, ''),
+(9, 0, 0, 0, 16, NULL, NULL, NULL, ''),
+(10, 0, 0, 0, 17, NULL, NULL, NULL, ''),
+(11, 1, 3, 0, 18, NULL, '2023-01-09 10:54:07', NULL, '::1'),
+(12, 0, 0, 0, 19, NULL, NULL, NULL, ''),
+(13, 0, 0, 0, 20, NULL, NULL, NULL, ''),
+(16, 1, 1, 0, 30, '2023-01-09 10:38:14', '2023-01-09 11:07:09', '2023-01-09 11:08:41', '::1');
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   `email` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_bin NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `utilisateurs`
@@ -126,7 +128,7 @@ INSERT INTO `utilisateurs` (`id`, `pseudo`, `email`, `password`) VALUES
 (18, 'ArToXx', 'sdfsdfdsfdfdfdddd@g.fr', '$argon2id$v=19$m=65536,t=4,p=1$TzA3eERhallkd2htOVFIbQ$hatPCfmLJpplv9Zt0hNYTf13BaJfgKs41jWydqmcwG8'),
 (19, 'sdfdssss', 'artoxxfr@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$WnZQVGY4YS9OcTRHVkJnMg$CsJM7HujE8IlT3Kc+JfhErsg803sbWrPXzw1yx/Uns0'),
 (20, 'Test', 'test@test.fr', '$argon2id$v=19$m=65536,t=4,p=1$czYvVktCVU9FeGZ4TFVMYg$BegSzeq6APgBn+KZXj18A+2LiLii1Pa9PK9t5+bfQtc'),
-(21, 'comptetest', 'comptetest@test.fr', '$argon2id$v=19$m=65536,t=4,p=1$a0lBeFY2L09tdWNGcmRPYg$FMDPmk80bmabtJ+xK/U5u+K/vEjqOBvdq+/2TpzPUow');
+(30, 'comptetest', 'comptetest@test.com', '$argon2id$v=19$m=65536,t=4,p=1$Z285R1pETzlqZFZZRHJiQw$K1sordI3DuiBFoMVT+EMm6RVniq2KGRD+Or7DQ9dLqc');
 
 -- --------------------------------------------------------
 
@@ -137,8 +139,9 @@ INSERT INTO `utilisateurs` (`id`, `pseudo`, `email`, `password`) VALUES
 DROP TABLE IF EXISTS `utilisateurs_has_avatar`;
 CREATE TABLE IF NOT EXISTS `utilisateurs_has_avatar` (
   `id_utilisateurs` int(11) NOT NULL,
-  `id_avatar` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  `id_avatar` int(11) NOT NULL,
+  PRIMARY KEY (`id_utilisateurs`,`id_avatar`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 --
 -- Déchargement des données de la table `utilisateurs_has_avatar`
@@ -153,7 +156,7 @@ INSERT INTO `utilisateurs_has_avatar` (`id_utilisateurs`, `id_avatar`) VALUES
 (18, 1),
 (19, 1),
 (20, 1),
-(21, 4);
+(30, 1);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
