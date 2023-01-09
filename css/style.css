@@ -803,17 +803,17 @@ li {
     border-radius: 1em;
     border: 0.1em solid black;
 }
-
+*/
 .button-popup {
     width: 90%;
     height: 3.5em;
     border: 3px solid black;
     border-radius: 0.5em;
-    font-family: "futurama";
     font-size: 1em;
     margin: 2em auto;
 }
 
+/*
 #background {
     display: none;
     position: absolute;
@@ -850,9 +850,6 @@ li {
 .rayures {
     background-image: url(../img/rature_hal.svg);
 }
-*/
-
-/* Pour les boutons de la popup déconnection*/
 
 .rouge-pastel {
     background-color: #E85581;
@@ -863,7 +860,6 @@ li {
     background-color: #FDDE58;
 }
 
-*/
 /*
 .cyan {
     background-color: #7FCFDA;
@@ -977,3 +973,8 @@ li {
     margin-top: 5vh;
 } 
 */
+
+.mots_de_passe_oublie {
+    display: flex;
+    justify-content: center;
+}

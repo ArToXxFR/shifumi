@@ -45,7 +45,7 @@
         <form action="index.php" method="POST" class="flex-login">
             <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-login">
             <input name="password" type="password" placeholder="Mot de passe" class="input-login">
-            <span class="mots_gras">Mot de passe oublié ?</span>
+            <span class="mots_gras mots_de_passe_oublie">Mot de passe oublié ?</span>
             <input name="button-login" type="submit" value="Se connecter" class="button-popup cyan">
             <input type="hidden" name="name" value="login">
         </form>
@@ -113,10 +113,10 @@
 ------------------------------------------------------------->
 
 <div class="position-popup" id="scoreboard">
-        <div class="form-popup">
-                <span class="title-popup border-radius-top">Tableau des scores</span>
-        </div>
-        <button class="close-popup rouge-pastel" onclick="closeForm('scoreboard')">✖</button>
+    <div class="form-popup">
+        <span class="title-popup border-radius-top">Tableau des scores</span>
+    </div>
+    <button class="close-popup rouge-pastel" onclick="closeForm('scoreboard')">✖</button>
 </div>
 
 <!------------------------------------------------------------
@@ -124,9 +124,9 @@
 ------------------------------------------------------------->
 
 <div class="position-popup" id="profil">
-        <div class="form-popup">
-                <span class="title-popup border-radius-top">Votre profil</span>
-                
-        </div>
-        <button class="close-popup rouge-pastel" onclick="closeForm('profil')">✖</button>
+    <div class="form-popup">
+        <span class="title-popup border-radius-top">Votre profil</span>
+
+    </div>
+    <button class="close-popup rouge-pastel" onclick="closeForm('profil')">✖</button>
 </div>
