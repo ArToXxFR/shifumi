@@ -120,9 +120,18 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 <body>
     <?php require_once __DIR__ . "/includes/header.php"; ?>
     <div class="page_container">
-        <div class="description">
-            Défier <span class="rayures">Hal</span> Bender à SHIFUMI
+        <div class="contenu">
+            <div class="description">
+                Défier <span class="rayures">Hal</span> Bender à SHIFUMI
+            </div>
+            <?php if (userConnected()) { ?>
+                <button class="open-button jaune" onclick="document.location.href='play.php'">Tenter votre chance</button>
+            <?php } else { ?>
+                <button class="open-button jaune" onclick="openForm('login')">Tenter votre chance</button>
+            <?php } ?>
+            <button class="open-button rouge-pastel" onclick="openForm('popupForm')">Rappel des règles</button>
         </div>
+<<<<<<< HEAD
         <?php if (userConnected()) { 
             if(!isset($_SESSION['already_played'])){
                 $_SESSION['already_played'] = 1;
@@ -134,6 +143,91 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             <button class="open-button jaune" onclick="openForm('login')">Tenter votre chance</button>
         <?php } ?>
         <button class="open-button rouge-pastel" onclick="openForm('popupForm')">Rappel des règles</button>
+=======
+        <div class="bender_message_homepage_first_time"></div>
+    </div>
+    <?php require('footer.php'); ?>
+
+    <!-- Fond noir transparent lors des popup -->
+    <div id="background"></div>
+    <!-- Popup des règles -->
+    <div class="position-popup" id="popupForm">
+        <div class="form-popup">
+            <h2 class="title-popup rouge-pastel">Rappel des Règles</h2>
+            <p>À chaque partie, le joueur choisit l'une ces trois actions</p>
+            <p class="regles_signes pierre mots-gras">pierre</p>
+            <p class="regles_signes papier mots-gras">papier</p>
+            <p class="regles_signes ciseaux mots-gras">ciseaux</p>
+            <p>La <strong class="mots-gras">pierre</strong> bat les <strong class="mots-gras">ciseaux</strong> en les émoussant.</p>
+            <p>Le <strong class="mots-gras">papier</strong> bat la <strong class="mots-gras">pierre</strong> en l'enveloppant.</p>
+            <p>Les <strong class="mots-gras">ciseaux</strong> battent le <strong class="mots-gras">papier</strong> en la coupant.</p>
+            <p>
+                Il peut y avoir des matchs nulles si le joueur et Bender choisissent
+                la même action.
+            </p>
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('popupForm')"></button>
+    </div>
+    <!-- Popup du login -->
+    <div class="position-popup" id="login">
+        <div class="form-popup">
+            <span class="title-popup border-radius-top jaune">Vous n'avez pas de compte ?</span>
+            <button class="button-popup jaune" onclick="closeForm('login'); openForm('register');">Créer un nouveau compte</button>
+            <span class="title-popup border-top cyan ombre-top">Vous avez déjà un compte ?</span>
+            <form action="index.php" method="POST" class="flex-login">
+                <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-login">
+                <input name="password" type="password" placeholder="Mot de passe" class="input-login">
+                <span class="mots-gras">Mot de passe oublié ?</span>
+                <input name="button-login" type="submit" value="Se connecter" class="button-popup cyan">
+            </form>
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('login')"></button>
+    </div>
+    <!-- Popup de register -->
+    <div class="position-popup" id="register">
+        <div class="form-popup">
+            <span class="title-popup border-radius-top jaune">Création de compte</span>
+            <form action="index.php" method="POST" class="flex-login">
+                <div class="first-step-register" id="first-step">
+                    <span>1/2 - Vos identifiants</span>
+                    <input name="email" type="email" placeholder="Taper votre email..." required>
+                    <input type="password" name="password" placeholder="Taper votre mot de passe..." required>
+                    <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                </div>
+                <div class="second-step-register" id="second-step">
+                    <span>2/2 - Personnalisation</span>
+                    <input name="pseudo" type="text" placeholder="Taper votre pseudo..." required>
+                    <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
+                        <?php foreach ($avatar_profile as $avatar) { ?>
+                            <option value="<?= $avatar['image'] ?>"><?= $avatar['nom'] ?></option>
+                        <?php } ?>
+                    </select>
+                    <img src="/avatar/avatars_fry.png" alt="avatar" id="avatar" width="50px">
+                    <input type="submit" name="button-register" value="Terminer">
+                </div>
+            </form>
+            <div class="first-step-register" id="first-step-buttons">
+                <button onclick="closeForm('register'); openForm('login');">Précédent</button>
+                <button onclick="nextstep();">Suivant</button>
+            </div>
+            <div class="second-step-register" id="second-step-buttons">
+                <button onclick="previousstep()">Précédent</button>
+
+            </div>
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('login'); closeForm('register');"></button>
+    </div>
+    <!-- Popup de deconnection -->
+    <div class="position-popup" id="deconnection">
+        <div class="form-popup">
+            <h2 class="title-popup rouge-pastel">Se déconnecter</h2>
+            <span class="choice">Etes-vous sur de vouloir vous déconnecter ?</span>
+            <button onclick="document.location.href='deconnection.php'" class="button-popup rouge-pastel">Oui je veux me déconnecter</button>
+            <button onclick="document.location.href='index.php'" class="button-popup jaune">C'était une erreur, annuler</button>
+            <img src="bender_message/bender_terminator.svg" alt="Au revoir de bender">
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('deconnection')"></button>
+>>>>>>> 3bc9b59 (Un petit commit rapide (CSS + fichiers medias))
     </div>
     <?php require_once __DIR__ . "/includes/footer.php"; 
     require_once __DIR__ . "/includes/popups.php"?>
