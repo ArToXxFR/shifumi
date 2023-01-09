@@ -18,9 +18,9 @@
             <li>ciseaux</li>
         </ul>
         <ol>
-            <li><img class="taille-image" src="/img/Bouton - Pierre.svg" alt="icon pierre"></li>
-            <li><img class="taille-image" src="/img/Bouton - Papier.svg" alt="icon papier"></li>
-            <li><img class="taille-image" src="/img/Bouton - Ciseaux.svg" alt="icon ciseaux"></li>
+            <li><img class="taille-image" src="/icons_jeu/pierre.png" alt="icon pierre"></li>
+            <li><img class="taille-image" src="/icons_jeu/papier.png" alt="icon papier"></li>
+            <li><img class="taille-image" src="/icons_jeu/ciseaux.png" alt="icon ciseaux"></li>
         </ol>
         <p>La <strong class="mots_gras">pierre</strong> bat les <strong class="mots_gras">ciseaux</strong> en les émoussant.</p>
         <p>Le <strong class="mots_gras">papier</strong> bat la <strong class="mots_gras">pierre</strong> en l'enveloppant.</p>
