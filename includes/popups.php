@@ -106,10 +106,24 @@
 ------------------------------------------------------------->
 
 <div class="position-popup" id="scoreboard">
-    <div class="form-popup">
-        <span class="title-popup border-radius-top">Tableau des scores</span>
-    </div>
-    <button class="close-popup rouge-pastel" onclick="closeForm('scoreboard')">✖</button>
+        <div class="form-popup">
+                <span class="title-popup border-radius-top">Tableau des scores</span>
+                <?php $scoreboard = recuperation_scoreboard($dbh); ?>
+                    
+                <table>
+                    <?php for($i = 0; $i < 10; $i++){ ?>
+                    <tr>
+                        <td><img src="<?= $scoreboard[$i]['image']; ?>" alt="avatar" class="img-profile"></td>
+                        <td><span><?= $scoreboard[$i]['pseudo']; ?></span></td>
+                        <td><span><?= $i+1; ?></span></td>
+                        <td><span><?= $scoreboard[$i]['win']; ?></span></td>
+                        <td><span><?= $scoreboard[$i]['loose']; ?></span></td>
+                        <td><span><?= $scoreboard[$i]['nulle']; ?></span></td>
+                    </tr>
+                    <?php } ?>
+                </table>
+        </div>
+        <button class="close-popup rouge-pastel" onclick="closeForm('scoreboard')">✖</button>
 </div>
 
 <!------------------------------------------------------------

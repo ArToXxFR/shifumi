@@ -71,4 +71,18 @@ function array_avatars($dbh){
     return $avatar_profile;
 }
 
+/* Récupération de toutes les données pour le tableau des scores */
+
+function recuperation_scoreboard($dbh){
+    $sth = $dbh->prepare('SELECT pseudo, avatar.image, stats.win, stats.loose, stats.nulle
+                    FROM utilisateurs
+                    INNER JOIN utilisateurs_has_avatar ON utilisateurs.id = utilisateurs_has_avatar.id_utilisateurs
+                    INNER JOIN avatar ON avatar.id = utilisateurs_has_avatar.id_avatar
+                    INNER JOIN stats ON utilisateurs.id = stats.id_user
+                    ORDER BY stats.win DESC
+                    LIMIT 10');
+    $sth->execute();
+    $scoreboard = $sth->fetchAll(PDO::FETCH_ASSOC);
+    return $scoreboard;
+}
 
