@@ -6,7 +6,7 @@ require_once __DIR__ . "/includes/functions_request_bdd.php";
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    /* On vérifie si l'utilisateur n'est pas déjà connecté */ 
+    /* On vérifie si l'utilisateur n'est pas déjà connecté */
 
     if (!userConnected()) {
 
@@ -30,7 +30,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
                 /* On vérifie que le mot de passe corresponde bien alors celui de l'utilisateur */
 
-                if(password_verify(GRAIN . $_POST['password'] . SEL, $userInfoLogin['password'])) {
+                if (password_verify(GRAIN . $_POST['password'] . SEL, $userInfoLogin['password'])) {
                     /* Cette fonction va récupérer toutes les informations de l'utilisateur qui vient de se connecter
                        pseudo, avatar, nombre de wins, looses, nulls
                        Tout est stocké dans la variable superglobal _SESSION */
@@ -46,8 +46,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                 $incorrectId = true;
             }
 
-        /* On vérifie que le formulaire soit un register et non pas un login */
-
+            /* On vérifie que le formulaire soit un register et non pas un login */
         } else if ($_POST['name'] == 'register') {
 
             /* On vérifie ici si l'email saisie par l'utilisateur existe déjà dans la BDD */
@@ -68,7 +67,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             if (!$isNotError) {
                 echo "<script>alert('Impossible de récupérer l'avatar')</script>";
             }
-            
+
             /* On cherche si le pseudo ou l'email est déjà présent dans la base de donnée */
             if (empty($emailAlreadyExist)) {
                 if (empty($pseudoAlreadyExist)) {
@@ -78,7 +77,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                            Ensuite le mot de passe est crypté avec la methode ARGON2ID avec un grain de sel ce qui rend la sécurité maximale */
 
                         $password = password_hash(GRAIN . $_POST['password'] . SEL, PASSWORD_ARGON2ID);
-                        
+
                         $infosCompte = [
                             'pseudo' => $_POST['pseudo'],
                             'email' => strtolower($_POST['email']),
@@ -89,7 +88,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                         /* Appel de la fonction qui va créer l'utilisateur dans la base de données */
 
                         creation_compte($dbh, $infosCompte);
-                        
                     } else {
                         echo "<script>alert('Les deux mots de passe ne correspondent pas')</script>";
                     }
@@ -123,20 +121,22 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         <div class="description">
             Défier <span class="rayures">Hal</span> Bender à SHIFUMI
         </div>
-        <?php if (userConnected()) { 
-            if(!isset($_SESSION['already_played'])){
+        <?php if (userConnected()) {
+            if (!isset($_SESSION['already_played'])) {
                 $_SESSION['already_played'] = 1;
                 date_first_game($dbh); ?>
                 <button class="open-button jaune" onclick="document.location.href='play.php'">Faire votre 1ère partie</button>
             <?php } else { ?>
                 <button class="open-button jaune" onclick="document.location.href='play.php'">Retenter votre chance</button>
-        <?php }} else { ?>
+            <?php }
+        } else { ?>
             <button class="open-button jaune" onclick="openForm('login')">Tenter votre chance</button>
         <?php } ?>
         <button class="open-button rouge-pastel" onclick="openForm('popupForm')">Rappel des règles</button>
+        <div class="bender_message_homepage_first_time"></div>
     </div>
-    <?php require_once __DIR__ . "/includes/footer.php"; 
-    require_once __DIR__ . "/includes/popups.php"?>
+    <?php require_once __DIR__ . "/includes/footer.php";
+    require_once __DIR__ . "/includes/popups.php" ?>
 </body>
 
 </html>

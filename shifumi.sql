@@ -40,24 +40,24 @@ CREATE TABLE IF NOT EXISTS `avatar` (
 --
 
 INSERT INTO `avatar` (`id`, `nom`, `image`) VALUES
-(1, 'Fry', '/medias/avatars/avatars_fry.png'),
-(2, 'Leela', '/medias/avatars/avatars_leela.png'),
-(3, 'Amy', '/medias/avatars/avatars_amy.png'),
-(4, 'Hermes', '/medias/avatars/avatars_hermes.png'),
-(5, 'Kif', '/medias/avatars/avatars_kif.png'),
-(6, 'Zoidberg', '/medias/avatars/avatars_zoidberg.png'),
-(7, 'Farnsworth', '/medias/avatars/avatars_farnsworth.png'),
-(8, 'Scruffy', '/medias/avatars/avatars_scruffy.png'),
-(9, 'Nibbler', '/medias/avatars/avatars_nibbler.png'),
-(10, 'Calculon', '/medias/avatars/avatars_calculon.png'),
-(11, 'Zapp', '/medias/avatars/avatars_zapp.png'),
-(12, 'M\'man', '/medias/avatars/avatars_mman.png'),
-(13, 'Walt', '/medias/avatars/avatars_walt.png'),
-(14, 'Larry', '/medias/avatars/avatars_larry.png'),
-(15, 'Ignar', '/medias/avatars/avatars_ignar.png'),
-(16, 'Roberto', '/medias/avatars/avatars_roberto.png'),
-(17, 'Diable', '/medias/avatars/avatars_le_diable.png'),
-(18, 'Elzar', '/medias/avatars/avatars_elzar.png');
+(1, 'Fry', '.medias/avatars/avatars_fry.png'),
+(2, 'Leela', 'medias/avatars/avatars_leela.png'),
+(3, 'Amy', 'medias/avatars/avatars_amy.png'),
+(4, 'Hermes', 'medias/avatars/avatars_hermes.png'),
+(5, 'Kif', 'medias/avatars/avatars_kif.png'),
+(6, 'Zoidberg', 'medias/avatars/avatars_zoidberg.png'),
+(7, 'Farnsworth', 'medias/avatars/avatars_farnsworth.png'),
+(8, 'Scruffy', 'medias/avatars/avatars_scruffy.png'),
+(9, 'Nibbler', 'medias/avatars/avatars_nibbler.png'),
+(10, 'Calculon', 'medias/avatars/avatars_calculon.png'),
+(11, 'Zapp', 'medias/avatars/avatars_zapp.png'),
+(12, 'M\'man', 'medias/avatars/avatars_mman.png'),
+(13, 'Walt', 'medias/avatars/avatars_walt.png'),
+(14, 'Larry', 'medias/avatars/avatars_larry.png'),
+(15, 'Ignar', 'medias/avatars/avatars_ignar.png'),
+(16, 'Roberto', 'medias/avatars/avatars_roberto.png'),
+(17, 'Diable', 'medias/avatars/avatars_le_diable.png'),
+(18, 'Elzar', 'medias/avatars/avatars_elzar.png');
 
 -- --------------------------------------------------------
 

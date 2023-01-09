@@ -72,9 +72,9 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="jaune">Valider mon choix</button>
+                <button type="submit" class="jaune bouton_gauche">Valider mon choix</button>
             </form>
-            <button onclick="document.location.href='index.php'" class="button rouge-pastel">Annuler la partie</button>
+            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton_droite">Annuler la partie</button>
         </div>
     <?php } else { ?>
         <div class="page_container fade_out">
@@ -119,14 +119,14 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
                 <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
                 <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
             </div>
-            <button onclick="document.location.href='index.php'" class="">Accueil<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
-            <button onclick="document.location.href='play.php'" class="">Rejouer<img class="icon-button" src="img/fleche.svg" alt="flèche"></button>
+            <button onclick="document.location.href='index.php'" class="rouge-pastel bouton_gauche">Accueil</button>
+            <button onclick="document.location.href='play.php'" class="jaune bouton_droite">Rejouer</button>
         </div>
 
 
     <?php } ?>
-    <?php require_once __DIR__ . "/includes/footer.php"; ?>
-
+    <?php require_once __DIR__ . "/includes/footer.php";
+    require_once __DIR__ . "/includes/popups.php"?>
 </body>
 
 </html>
