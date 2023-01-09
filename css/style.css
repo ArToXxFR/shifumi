@@ -140,7 +140,8 @@ p {
 
 /* On retrouve l'Open Sans un peu partout au sein des pages */
 
-.open_sans_16px_bold {
+.open_sans_16px_bold,
+.mots-gras {
     font-family: "Open Sans Bold";
     font-size: 16px;
     line-height: 1.5;
@@ -172,12 +173,79 @@ body * {
    BOUTON
 ------------------------------------------------------------------------------------------------------------- */
 
-/* button {
-        max-width: 800px;
-        display: block;
-        margin: 0 auto;
-    } */
+button {
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+    width: 100%;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-family: "Futura Medium";
+    font-size: 20px;
+    line-height: 1.5;
+}
 
+button::before,
+button::after {
+    font-family: "Font Awesome Regular";
+    font-size: 20px;
+    line-height: 1;
+    margin: 0 10px;
+}
+
+/* Icône flèche à droite */
+
+button::after {
+    /* position: absolute; */
+    content: "";
+}
+
+button:hover {
+    /* scale: 1.05; */
+    opacity: 0.9;
+}
+
+/* Les différents backgrounds */
+
+button.rouge-pastel {
+    background: #E85581;
+}
+
+button.jaune {
+    background: #FDDE58;
+}
+
+button.purple {
+    background: #8B7AFF;
+}
+
+button.cyan {
+    background: #7FCFDA;
+}
+
+/* Cursor pointer */
+
+button {
+    cursor: pointer;
+}
+
+/* Boutons côte à côte */
+
+.bouton_gauche,
+.bouton_droite {
+    float: left;
+    width: calc(50% - 10px);
+}
+
+.bouton_gauche{
+    margin-right: 10px;
+}
+
+.bouton_droite {
+    margin-left: 10px;
+}
+
+#login .mots-gras
 
 /* -------------------------------------------------------------------------------------------------------------
    HEADER
@@ -217,7 +285,7 @@ header .background-title::before {
     top: 0;
     width: 234px;
     height: 50px;
-    background-image: url(../medias/logo/\ logo_shifumi_bender.svg);
+    background-image: url(../medias/logo/logo_shifumi_bender.svg);
     background-repeat: no-repeat;
     top: 50%;
     left: 50%;
@@ -238,6 +306,7 @@ header h1 {
 
 .page_container {
     z-index: 0;
+    height: calc(100% - 80px - 117px);
     padding-top: 80px;
     padding-bottom: 117px;
     padding-left: 20px;
@@ -267,40 +336,11 @@ header h1 {
     position: relative;
 }
 
-/* Il faudra supprimer tous les img qui représentent une fonticon de Font Awesome */
-
-.page_container button img {
-    display: none;
-}
-
 /* Style des 2 boutons */
 
 .page_container button {
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    height: 50px;
-    width: 100%;
     max-width: 800px;
-    border: 3px solid black;
-    border-radius: 5px;
-    font-family: "Futura Medium";
-    font-size: 20px;
-    line-height: 1.5;
-}
-
-.page_container button::before,
-.page_container button::after {
-    font-family: "Font Awesome Regular";
-    font-size: 20px;
-    line-height: 1;
-    margin: 0 10px;
-}
-
-/* Icône flèche à droite des 2 boutons */
-
-.page_container button::after {
-    content: "";
+    margin-top: 20px;
 }
 
 /* Icône gamepad à gauche du 1er bouton et background */
@@ -309,34 +349,22 @@ header h1 {
     content: "";
 }
 
-.page_container button.jaune {
-    background: #FDDE58;
-}
-
 /* Icône question chat à gauche du 2ème bouton et background */
 
 .page_container button.rouge-pastel::before {
     content: "";
 }
 
-.page_container button.rouge-pastel {
-    background: #E85581;
+/* Image de bender avec un message 1ère fois */
+
+.bender_message_homepage_first_time {
+    background-image: url(../medias/bender_message/bender_fight.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: calc(100% - 207px);
 }
 
-/* Icon des avatars du joueur */
-
-.img_profile {
-    border-radius: 1em;
-    height: 70%;
-    border: 3px solid black;
-    border-radius: 80em;
-    vertical-align: middle;
-    margin-right: 1vw;
-}
-
-.size_img_profile {
-    height: 15%;
-}
 
 /* -------------------------------------------------------------------------------------------------------------
    FOOTER
@@ -353,39 +381,9 @@ footer {
 
 }
 
-/* Styles des 2 boutons */
-
 footer button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 60px;
-    width: 100%;
-    padding: 0;
-    border: 3px solid black;
-    font-family: "Futura Medium";
-    font-size: 20px;
-    line-height: 1.5;
-}
-
-footer button::before,
-footer button::after {
-    font-family: "Font Awesome Regular";
-    font-size: 20px;
-    line-height: 1;
-    margin: 0 10px;
-}
-
-/* Icône flèche à droite des 2 boutons */
-
-footer button::after {
-    content: "";
-}
-
-/* Il faudra supprimer tous les img qui représentent une fonticon de Font Awesome */
-
-footer button img {
-    display: none;
+    border-radius: 0;
 }
 
 /* Icône table à gauche du 1er bouton et background */
@@ -395,7 +393,6 @@ footer button.purple::before {
 }
 
 footer button.purple {
-    background: #8B7AFF;
     margin-bottom: -3px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
@@ -406,10 +403,6 @@ footer button.purple {
 
 footer button.cyan::before {
     content: "";
-}
-
-footer button.cyan {
-    background: #7FCFDA;
 }
 
 footer button.profile,
@@ -427,8 +420,16 @@ footer button.deconnection-button {
     width: calc(50% + 1.5px)
 }
 
+/* Avatars  */
+
+.img-profile,
+.size_img_profile {
+    width: 40px !important;
+    height: 40px !important;
+}
+
 /* -------------------------------------------------------------------------------------------------------------
-   POPUP
+   POPUP - GENERAL
 ------------------------------------------------------------------------------------------------------------- */
 
 /* Filtre de la popup */
@@ -472,12 +473,6 @@ footer button.deconnection-button {
     border-radius: 10px;
 }
 
-/* Il faudra supprimer tous les img qui représentent une fonticon de Font Awesome */
-
-.position-popup .form-popup .title-popup img {
-    display: none;
-}
-
 /* L'en-tête de la popup */
 
 .position-popup .form-popup .title-popup::before {
@@ -505,12 +500,6 @@ footer button.deconnection-button {
     margin-top: -3px;
 }
 
-/* Pour rajouter un espace de 30px au 1er p après l'en-tête */
-
-.position-popup .form-popup .title-popup+p {
-    margin-top: 30px;
-}
-
 /* Bouton pour fermer la popup */
 
 .position-popup button.close-popup {
@@ -521,22 +510,40 @@ footer button.deconnection-button {
     background: #E85581;
     border: 3px solid black;
     border-radius: 10px;
-}
-
-.position-popup button.close-popup::before {
-    content: "";
-    position: absolute;
-    top: -3px;
-    left: -3px;
-    height: calc(60px - 30px);
-    width: calc(60px - 30px);
-    padding: calc(15px - 3px);
-    background: #E85581;
-    border: 3px solid black;
-    border-radius: 10px;
     font-family: "Font Awesome Solid";
     font-size: 30px;
     line-height: 1;
+}
+
+.position-popup button.close-popup::after {
+ display: none;
+}
+
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - REGLES
+------------------------------------------------------------------------------------------------------------- */
+
+/* Pour rajouter un espace de 30px au 1er p après l'en-tête */
+
+.position-popup .form-popup .title-popup + p {
+    margin-top: 30px;
+}
+
+.position-popup .form-popup .regles_signes {
+    display: inline-block;
+    margin-top: 25px;
+    font-family: "Open Sans Bold";
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.position-popup .form-popup .regles_signes + p {
+    margin-top: 35px;
+}
+
+.position-popup .form-popup p {
+    margin-top: 20px;
 }
 
 /* -------------------------------------------------------------------------------------------------------------
@@ -636,345 +643,4 @@ footer button.deconnection-button {
         opacity: 0;
         display: none;
     }
-}
-
-
-/* -------------------------------------------------------------------------------------------------------------
-   Faut penser à commenter
-------------------------------------------------------------------------------------------------------------- */
-
-/* .flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.background-title {
-    width: 100vw;
-    height: 10vh;
-    background-image: url('../img/backgrounds_galaxy.png');
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom: 2px solid black;
-    border-bottom-left-radius: 0.5em;
-    border-bottom-right-radius: 0.5em;
-    margin: 0 auto;
-}
-
-.title {
-    font-family: "Futura Medium";
-    font-size: 3em;
-    -webkit-text-stroke: 2px yellow;
-    text-shadow: 2px 2px 0 2em orange;
-    text-align: center;
-    margin: 0.5em auto;
-}
-
-.open-button {
-    display: block;
-    width: 90vw;
-    height: 7vh;
-    border: 0.2em solid black;
-    margin: 1em auto;
-    border-radius: 0.5em;
-    font-size: 1em;
-    font-family: "Futura Medium";
-}
-
-.connection-button {
-    display: block;
-    width: 100vw;
-    height: 8vh;
-    border: 0.2em solid black;
-    font-size: 1.1em;
-    font-family: "Futura Medium";
-    padding: 0;
-}
-
-.connection-button::before {
-    content: "";
-    font-size: 20px;
-    font-family: "FA6 Pro Regular";
-    display: inline-block;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100vw;
-}
-
-.score {
-    border-bottom: 0px;
-    border-radius: 0.5em 0.5em 0 0;
-}
-
-.position-popup {
-    display: none;
-    position: fixed;
-    width: 90vw;
-    height: 80vh;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-}
-
-.form-popup {
-    width: 100%;
-    height: 85%;
-    text-align: center;
-    background-color: whitesmoke;
-    border: 0.2em solid black;
-    border-radius: 0.5em;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    margin: 1em auto;
-}
-
-.icon-button,
-.icon-regles {
-    padding: 0 15px;
-    vertical-align: text-top;
-}
-
-*/
-
-/* Pour la popup rappel des règles */
-
-ul,
-li {
-    display: inline-block;
-    list-style-type: none;
-    font-weight: bold;
-}
-
-li {
-    width: 100px;
-}
-
-.taille-image {
-    width: 80%;
-}
-
-/*
-.title-popup {
-    display: inline-block;
-    vertical-align: middle;
-    width: 100%;
-    height: 12%;
-    text-align: center;
-    margin: 0 auto;
-    border-bottom: 0.2em solid black;
-    font-family: "futurama";
-    font-size: 1.2em;
-}
-
-.ombre-top {
-    box-shadow: 0 -0.2em 0.5em -0.2em black;
-}
-
-.border-radius-top {
-    border-radius: 0.5rem 0.5rem 0 0;
-}
-
-.border-top {
-    border-top: 0.2em solid black;
-}
-
-.flex-login {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.flex-login>* {
-    margin: 0.8em auto;
-}
-
-.close-popup {
-    font-size: 1em;
-    padding: 1em;
-    margin: 1em auto;
-    position: relative;
-    left: 50%;
-    transform: translate(-50%);
-    border-radius: 1em;
-    border: 0.1em solid black;
-}
-*/
-.button-popup {
-    width: 90%;
-    height: 3.5em;
-    border: 3px solid black;
-    border-radius: 0.5em;
-    font-size: 1em;
-    margin: 2em auto;
-}
-
-/*
-#background {
-    display: none;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background:
-        #000000;
-    z-index: 1;
-    opacity: 0.7;
-} */
-
-/* @font-face {
-    font-family: "futurama";
-    src: url('../fonts/fr-bold.ttf');
-} */
-
-/* .textmulticolor {
-    background-image: repeating-linear-gradient(to bottom, black, red);
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    color: transparent;
-}
-
-.description {
-    text-align: center;
-    font-size: 1.4em;
-    font-family: "Futura Medium";
-    margin: 1em auto;
-}
-
-.rayures {
-    background-image: url(../img/rature_hal.svg);
-}
-
-.rouge-pastel {
-    background-color: #E85581;
-}
-
-
-.jaune {
-    background-color: #FDDE58;
-}
-
-/*
-.cyan {
-    background-color: #7FCFDA;
-}
-
-.purple {
-    background-color: #8B7AFF;
-}
-
-.input-login {
-    width: 80%;
-    height: 10%;
-    padding: 1em;
-    font-size: 1em;
-}
-
-.profile {
-    padding: 0;
-    float: left;
-    width: 40%;
-    border: 0;
-    height: 8vh;
-    border: 0.2em solid black;
-    border-right: 0;
-}
-
-.deconnection-button {
-    padding: 0;
-    width: 60%;
-    height: 8vh;
-    border: 0;
-    text-decoration: none;
-    font-family: "futurama";
-    border: 0.2em solid black;
-}
-*/
-
-.img-profile {
-    border-radius: 1em;
-    height: 70%;
-    border: 3px solid black;
-    border-radius: 80em;
-    vertical-align: middle;
-    margin-right: 1vw;
-}
-
-/*
-.icons {
-    height: 5vh;
-}
-
-.radio {
-    border: 2px solid black;
-    width: 1em;
-    height: 1em;
-    display: inline-block;
-    vertical-align: middle;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 0.1em;
-}
-
-.radio>.inside-radio {
-    width: 0.8em;
-    height: 0.8em;
-    background-color: #FFFFFF;
-    transition: all 0.3s ease;
-    border-radius: 0.1em;
-}
-
-.input-hidden:checked+.radio>.inside-radio {
-    background-color: #000000;
-    transition: all 0.3s ease;
-}
-
-.input-hidden {
-    display: none;
-}
-
-.first-step-register {
-    display: block;
-}
-
-.second-step-register {
-    display: none;
-}
-
-.container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-.box {
-    width: 20vw;
-    height: 30vh;
-    margin: 20px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.choice {
-    display: block;
-    text-align: center;
-    font-family: "futurama";
-    font-size: 1.4em;
-    margin-top: 5vh;
-} 
-*/
-
-.mots_de_passe_oublie {
-    display: flex;
-    justify-content: center;
 }
