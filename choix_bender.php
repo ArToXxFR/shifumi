@@ -75,7 +75,7 @@ switch($resultat){
 
 $sth = $dbh->prepare('UPDATE stats
 INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user 
-SET ip=:ip, date_late_game = (CURRENT_TIMESTAMP)
+SET ip=:ip, date_last_game= (CURRENT_TIMESTAMP)
 WHERE pseudo = :pseudo;');
 $sth->execute(['pseudo' => $_SESSION['pseudo'], 'ip' => $_SERVER['REMOTE_ADDR']]);
 

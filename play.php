@@ -4,7 +4,6 @@ require_once __DIR__ . "/includes/connect_bdd.php";
 require_once __DIR__ . "/includes/functions_request_bdd.php";
 require_once __DIR__ . "/includes/functions_shifumi.php";
 $jeu_lance = false;
-var_dump($_SERVER['REMOTE_ADDR']);
 
 if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
     if (isset($_SESSION['resultat'])) {
