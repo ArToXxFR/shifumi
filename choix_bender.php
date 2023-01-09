@@ -71,6 +71,13 @@ switch($resultat){
         header('Location: play.php');
 }
 
+/* Ajout de l'adresse IP du joueur */
+
+$sth = $dbh->prepare('UPDATE stats
+INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user 
+SET ip=:ip, date_last_game= (CURRENT_TIMESTAMP)
+WHERE pseudo = :pseudo;');
+$sth->execute(['pseudo' => $_SESSION['pseudo'], 'ip' => $_SERVER['REMOTE_ADDR']]);
 
 $_SESSION['resultat'] = $compte_rendu_resultat;
 header('Location: play.php');
