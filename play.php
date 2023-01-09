@@ -4,6 +4,7 @@ require_once __DIR__ . "/includes/connect_bdd.php";
 require_once __DIR__ . "/includes/functions_request_bdd.php";
 require_once __DIR__ . "/includes/functions_shifumi.php";
 $jeu_lance = false;
+var_dump($_SERVER['REMOTE_ADDR']);
 
 if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
     if (isset($_SESSION['resultat'])) {
@@ -49,7 +50,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
                 <div class="container">
                     <div class="box">
                         <p class="mots_gras">Pierre</p>
-                        <img src="icons_jeu/pierre.png" alt="pierre">
+                        <img src="/icons_jeu/pierre.png" alt="pierre">
                         <input type="radio" name="shifumi" value="pierre" id="pierre" class="input-hidden" required>
                         <label for="pierre" class="radio">
                             <div class="inside-radio"></div>
@@ -57,7 +58,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
                     </div>
                     <div class="box">
                         <p class="mots_gras">Papier</p>
-                        <img src="icons_jeu/papier.png" alt="papier">
+                        <img src="/icons_jeu/papier.png" alt="papier">
                         <input type="radio" name="shifumi" value="papier" id="papier" class="input-hidden" required>
                         <label for="papier" class="radio">
                             <div class="inside-radio"></div>
@@ -65,7 +66,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
                     </div>
                     <div class="box">
                         <p class="mots_gras">Ciseaux</p>
-                        <img src="icons_jeu/ciseaux.png" alt="ciseaux">
+                        <img src="/icons_jeu/ciseaux.png" alt="ciseaux">
                         <input type="radio" name="shifumi" value="ciseaux" id="ciseaux" class="input-hidden" required>
                         <label for="ciseaux" class="radio">
                             <div class="inside-radio"></div>

@@ -42,7 +42,7 @@ function users_infos($dbh, $userInfoLogin){
 function creation_compte($dbh, $infosCompte){
     $sth = $dbh->prepare("INSERT INTO utilisateurs(pseudo, email, password) VALUES (:pseudo, :email, :password);
                         INSERT INTO utilisateurs_has_avatar(id_utilisateurs, id_avatar) VALUES (LAST_INSERT_ID(), :id_avatar);
-                        INSERT INTO stats(id_user) VALUES (LAST_INSERT_ID());");
+                        INSERT INTO stats(id_user, creation_compte) VALUES (LAST_INSERT_ID(), CURRENT_TIMESTAMP);");
     $isNotError = $sth->execute($infosCompte);
     // Ici on créer un utilisateur dans la table "utilisateurs" et on associe sa clef étrangère dans la table stats
     if ($isNotError) {
