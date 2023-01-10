@@ -43,26 +43,23 @@ $resultat = $shifumi[$choix_utilisateur][$choix_bender];
 switch($resultat){
     case 'gagne':
         $compte_rendu_resultat = [$choix_bender, 'victoire', $choix_utilisateur];
-        $sth = $dbh->prepare('UPDATE stats 
-                            INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user
-                            SET win = win + 1
+        $sth = $dbh->prepare('UPDATE user 
+                            SET wins = wins + 1
                             WHERE pseudo=:pseudo;');
         $sth->execute(['pseudo' => $_SESSION['pseudo']]);
         break;
     case 'perdu':
         $compte_rendu_resultat = [$choix_bender, 'defaite', $choix_utilisateur];
-        $sth = $dbh->prepare('UPDATE stats 
-                            INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user
-                            SET loose = loose + 1
+        $sth = $dbh->prepare('UPDATE user 
+                            SET looses = looses + 1
                             WHERE pseudo = :pseudo;');
         $isNotError = $sth->execute(['pseudo' => $_SESSION['pseudo']]);
         if(!$isNotError){ print_r($sth->errorInfo()); }
         break;
     case 'egalite':
         $compte_rendu_resultat = [$choix_bender, 'null', $choix_utilisateur];
-        $sth = $dbh->prepare('UPDATE stats
-                            INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user 
-                            SET nulle = nulle + 1
+        $sth = $dbh->prepare('UPDATE user 
+                            SET nuls = nuls + 1
                             WHERE pseudo = :pseudo;');
         $sth->execute(['pseudo' => $_SESSION['pseudo']]);
         break;
@@ -73,8 +70,7 @@ switch($resultat){
 
 /* Ajout de l'adresse IP du joueur */
 
-$sth = $dbh->prepare('UPDATE stats
-INNER JOIN utilisateurs ON utilisateurs.id = stats.id_user 
+$sth = $dbh->prepare('UPDATE user 
 SET ip=:ip, date_last_game= (CURRENT_TIMESTAMP)
 WHERE pseudo = :pseudo;');
 $sth->execute(['pseudo' => $_SESSION['pseudo'], 'ip' => $_SERVER['REMOTE_ADDR']]);

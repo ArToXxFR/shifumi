@@ -20,7 +20,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
             /* L'utilisateur a saisi une email et on récupère le pseudo et le mot de passe même si il est incorrect */
 
-            $sth = $dbh->prepare("SELECT pseudo, password, email FROM utilisateurs WHERE pseudo=:username OR email=:username");
+            $sth = $dbh->prepare("SELECT pseudo, password, email FROM user WHERE pseudo=:username OR email=:username");
             $isNotError = $sth->execute($login);
             $userInfoLogin = $sth->fetch(PDO::FETCH_ASSOC);
 
@@ -51,13 +51,13 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
             /* On vérifie ici si l'email saisie par l'utilisateur existe déjà dans la BDD */
 
-            $sth = $dbh->prepare("SELECT email FROM utilisateurs WHERE email=:email");
+            $sth = $dbh->prepare("SELECT email FROM user WHERE email=:email");
             $sth->execute(['email' => strtolower($_POST['email'])]);
             $emailAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
 
             /* On vérifie ici si le pseudo saisie par l'utilisateur existe déjà dans la BDD */
 
-            $sth = $dbh->prepare("SELECT pseudo FROM utilisateurs WHERE pseudo=:pseudo");
+            $sth = $dbh->prepare("SELECT pseudo FROM user WHERE pseudo=:pseudo");
             $sth->execute(['pseudo' => $_POST['pseudo']]);
             $pseudoAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
 

@@ -67,7 +67,7 @@
                 <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
                     <?php $avatar_profile = array_avatars($dbh);
                     foreach ($avatar_profile as $avatar) { ?>
-                        <option value="<?= $avatar['image'] ?>"><?= $avatar['nom'] ?></option>
+                        <option value="<?= $avatar['image'] ?>"><?= $avatar['name'] ?></option>
                     <?php } ?>
                 </select>
                 <img src="medias/avatars/avatars_fry.png" alt="avatar" id="avatar" width="50px">
@@ -116,9 +116,9 @@
                         <td><img src="<?= $scoreboard[$i]['image']; ?>" alt="avatar" class="img-profile"></td>
                         <td><span><?= $scoreboard[$i]['pseudo']; ?></span></td>
                         <td><span><?= $i+1; ?></span></td>
-                        <td><span><?= $scoreboard[$i]['win']; ?></span></td>
-                        <td><span><?= $scoreboard[$i]['loose']; ?></span></td>
-                        <td><span><?= $scoreboard[$i]['nulle']; ?></span></td>
+                        <td><span><?= $scoreboard[$i]['wins']; ?></span></td>
+                        <td><span><?= $scoreboard[$i]['looses']; ?></span></td>
+                        <td><span><?= $scoreboard[$i]['nuls']; ?></span></td>
                     </tr>
                     <?php } ?>
                 </table>

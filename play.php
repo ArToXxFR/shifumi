@@ -126,7 +126,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
 
     <?php } ?>
     <?php require_once __DIR__ . "/includes/footer.php";
-    require_once __DIR__ . "/includes/popups.php"?>
+    require_once __DIR__ . "/includes/popups.php"; ?>
 </body>
 
 </html>
