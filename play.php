@@ -72,23 +72,21 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="jaune bouton_gauche">Valider mon choix</button>
+                <button type="submit" class="jaune bouton">Valider mon choix</button>
             </form>
-            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton_droite">Annuler la partie</button>
+            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton">Annuler la partie</button>
         </div>
     <?php } else { ?>
         <div class="page_container fade_out">
             <div class="container">
-                <div class="futura_28px_medium"> C'est parti... </div>
-                <div class="futura_28px_medium"> SHI... FU... MI... </div>
+                <div class="futura_28px_medium lancement">C'est parti...</div>
+                <div class="futura_50px_medium mots_gras">SHI... FU... MI !</div>
                 <div class="container">
-                    <div class="box">
-                        <span><?= $_SESSION['pseudo'] ?></span>
-                        <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
+                    <div class="box1">
                         <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
+                        <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
                     </div>
-                    <div class="box">
-                        <span>Bender</span>
+                    <div class="box1">
                         <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
                         <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
                     </div>
@@ -99,26 +97,39 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
         <div class="page_container fade_in">
             <?php switch ($resultat_jeu) {
                 case 'victoire': ?>
-                    <span> Bravo tu as gagné ! </span>
+                    <span class="after_game_message futura_28px_medium"> Bravo tu as gagné ! </span>
                 <?php break;
                 case 'defaite': ?>
-                    <span> Tu as perdu ! </span>
+                    <span class="after_game_message futura_28px_medium"> Tu as perdu ! </span>
                 <?php break;
                 case 'null': ?>
-                    <span> Match nul ! </span>
+                    <span class="after_game_message futura_28px_medium"> Match nul ! </span>
 
             <?php break;
             } ?>
-            <div class="box">
-                <span><?= $_SESSION['pseudo'] ?></span>
-                <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
-                <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
+            <div class="container">
+                <div class="box1">
+                    <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
+                    <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
+
+                </div>
+                <div class="box1">
+                    <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
+                    <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
+                </div>
             </div>
-            <div class="box">
-                <span>Bender</span>
-                <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
-                <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
-            </div>
+            <?php switch ($resultat_jeu) {
+                case 'victoire': ?>
+                    <div class="image_center"><img src="/medias/bender_message/bender_you_win_1.png" alt="Bender rageux"></div>
+                <?php break;
+                case 'defaite': ?>
+                    <div class="image_center"><img src="/medias/bender_message/bender_you_lose_1.png" alt="Bender se moque"></div>
+                <?php break;
+                case 'null': ?>
+                    <div class="image_center"><img src="/medias/bender_message/bender_match_nul_1.png" alt="Bender provoque"></div>
+
+            <?php break;
+            } ?>
             <button onclick="document.location.href='index.php'" class="rouge-pastel bouton_gauche">Accueil</button>
             <button onclick="document.location.href='play.php'" class="jaune bouton_droite">Rejouer</button>
         </div>

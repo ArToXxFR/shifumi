@@ -237,7 +237,7 @@ button {
     width: calc(50% - 10px);
 }
 
-.bouton_gauche{
+.bouton_gauche {
     margin-right: 10px;
 }
 
@@ -246,7 +246,6 @@ button {
 }
 
 #login .mots-gras
-
 /* -------------------------------------------------------------------------------------------------------------
    HEADER
 ------------------------------------------------------------------------------------------------------------- */
@@ -311,6 +310,7 @@ header h1 {
     padding-bottom: 117px;
     padding-left: 20px;
     padding-right: 20px;
+    position: relative;
 }
 
 /* Style pour « Défier Bender à SHIFUMI */
@@ -516,7 +516,7 @@ footer button.deconnection-button {
 }
 
 .position-popup button.close-popup::after {
- display: none;
+    display: none;
 }
 
 
@@ -526,7 +526,7 @@ footer button.deconnection-button {
 
 /* Pour rajouter un espace de 30px au 1er p après l'en-tête */
 
-.position-popup .form-popup .title-popup + p {
+.position-popup .form-popup .title-popup+p {
     margin-top: 30px;
 }
 
@@ -538,7 +538,7 @@ footer button.deconnection-button {
     margin-right: 15px;
 }
 
-.position-popup .form-popup .regles_signes + p {
+.position-popup .form-popup .regles_signes+p {
     margin-top: 35px;
 }
 
@@ -605,32 +605,38 @@ footer button.deconnection-button {
 /* Animation pour afficher le résultat */
 
 .fade_out {
-    display: block;
     opacity: 0;
     animation-name: fadeOutOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 2s;
-
+    position: absolute;
 }
 
 .fade_in {
-    display: block;
     opacity: 1;
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
-    animation-duration: 2s;
+    animation-duration: 3s;
 }
 
 @keyframes fadeInOpacity {
     0% {
         opacity: 0;
+        filter: blur(50px);
+    }
+
+    50% {
+        filter: blur(25px);
+    }
+
+    75% {
+        filter: blur(5px);
     }
 
     100% {
         opacity: 1;
-        display: block;
     }
 }
 
@@ -641,6 +647,46 @@ footer button.deconnection-button {
 
     100% {
         opacity: 0;
-        display: none;
     }
+}
+
+/* Centrer le texte pour le lancement de la partie "C'est partie..." */
+
+.lancement {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Pour le lancement du jeu "SH... FU... MI !" */
+
+.futura_50px_medium {
+    font-family: "Futura Medium";
+    font-size: 50px;
+    line-height: 1.5;
+}
+
+/* Pour mettre l'icon de jeu et l'icone de profil côte à côte */
+
+.box1 {
+    width: 40vw;
+    height: 30vh;
+    margin: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Le message du résultat de la partie */
+
+.after_game_message {
+    display: flex;
+    justify-content: center;
+}
+
+/* Pour centrer l'image de Bender avec le message */
+
+.image_center {
+    text-align: center;
 }
