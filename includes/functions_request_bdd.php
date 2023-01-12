@@ -13,7 +13,7 @@ function userConnected(){
 /* Récupère toutes les informations sur l'utilisateur lorsqu'il se connecte */
 
 function users_infos($dbh, $userInfoLogin){
-    $sth = $dbh->prepare("SELECT pseudo, avatar.image, wins, looses, nuls
+    $sth = $dbh->prepare("SELECT avatar_id, pseudo, email, avatar.image, wins, looses, nuls
                     FROM user
                     INNER JOIN avatar ON avatar.id = user.avatar_id
                     WHERE user.email=:email;");
@@ -22,6 +22,8 @@ function users_infos($dbh, $userInfoLogin){
     if ($isNotError) {
         $_SESSION['pseudo'] = $userInfoConnected['pseudo'];
         $_SESSION['image'] = $userInfoConnected['image'];
+        $_SESSION['email'] = $userInfoConnected['email'];
+        $_SESSION['avatar_id'] = $userInfoConnected['avatar_id'];
         $_SESSION['stats_user'] = ['win' => $userInfoConnected['wins'],
                                     'nulle' => $userInfoConnected['nuls'], 
                                     'loose' => $userInfoConnected['looses']];

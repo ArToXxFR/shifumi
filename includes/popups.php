@@ -133,7 +133,18 @@
 <div class="position-popup" id="profil">
     <div class="form-popup">
         <span class="title-popup border-radius-top">Votre profil</span>
-
+        <form action="index.php" method="POST" class="flex-login">
+            <input name="pseudo" type="text" maxlength="25" placeholder="<?= $_SESSION['pseudo']; ?>" class="input-login">
+            <input name="email" type="email" placeholder="<?= $_SESSION['email'] ?>" class="input-login">
+            <select name="avatar" id="f_selectTrie" required>
+                <?php $avatar_profile = array_avatars($dbh);
+                foreach ($avatar_profile as $avatar) { ?>
+                    <option value="<?= $avatar['id'] ?>" <?php if($_SESSION['avatar_id'] == $avatar['id']){ echo 'selected'; } ?>><?= $avatar['name']  ?></option>
+                <?php } ?>
+            </select>
+            <input type="hidden" name="name" value="modification_profil">
+            <input name="button-login" type="submit" value="Modifier le profil" class="button-popup cyan">
+        </form>
     </div>
     <button class="close-popup rouge-pastel" onclick="closeForm('profil')">✖</button>
 </div>

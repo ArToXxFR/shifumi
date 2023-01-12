@@ -25,6 +25,11 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
     header('Location: index.php');
 }
 
+if(!isset($_SESSION['already_played'])){
+    date_first_game($dbh);
+    $_SESSION['already_played'] = 1;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -126,7 +131,7 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
 
     <?php } ?>
     <?php require_once __DIR__ . "/includes/footer.php";
-    require_once __DIR__ . "/includes/popups.php"; ?>
+    require_once __DIR__ . "/includes/popups.php";  ?>
 </body>
 
 </html>
