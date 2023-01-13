@@ -39,7 +39,7 @@
             <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-login">
             <input name="password" type="password" placeholder="Mot de passe" class="input-login">
             <span class="mots_gras">Mot de passe oublié ?</span>
-            <input name="button-login" type="submit" value="Se connecter" class="button-popup cyan">
+            <button type="submit" class="button-popup cyan">Se connecter</button>
             <input type="hidden" name="name" value="login">
         </form>
     </div>
@@ -71,7 +71,7 @@
                     <?php } ?>
                 </select>
                 <img src="medias/avatars/avatars_fry.png" alt="avatar" id="avatar" width="50px">
-                <input type="submit" name="button-register" value="Terminer">
+                <button type="submit">Terminer</button>
             </div>
         </form>
         <div class="first-step-register" id="first-step-buttons">
@@ -143,8 +143,45 @@
                 <?php } ?>
             </select>
             <input type="hidden" name="name" value="modification_profil">
-            <input name="button-login" type="submit" value="Modifier le profil" class="button-popup cyan">
+            <button type="submit" class="button-popup cyan">Modifier le profil</button>
         </form>
+        <button onclick="closeForm('profil'); openForm('modification_password');">Changer de mot de passe</button>
+        <button onclick="closeForm('profil'); openForm('delete_profil');">Supprimer votre compte</button>
     </div>
     <button class="close-popup rouge-pastel" onclick="closeForm('profil')">✖</button>
+</div>
+
+<!------------------------------------------------------------
+---------Popup pour supprimer le profil du joueur-------------
+------------------------------------------------------------->
+
+<div class="position-popup" id="delete_profil">
+    <div class="form-popup">
+        <span class="title-popup border-radius-top">Supprimer votre compte</span>
+        <span>Êtes-vous sûr de vouloir supprimer votre compte ?</span>
+        <form action="index.php" method="POST" class="flex-login">
+            <input type="hidden" name="name" value="delete_profil">
+            <button type="submit" class="button-popup cyan">Supprimer le profil</button>
+        </form>
+        <button onclick="closeForm('delete_profil'); openForm('profil');">C'était une erreur, annuler</button>
+    </div>
+    <button class="close-popup rouge-pastel" onclick="closeForm('delete_profil')">✖</button>
+</div>
+
+<!------------------------------------------------------------
+---------Popup pour modifier le mot de passe du joueur--------
+------------------------------------------------------------->
+
+<div class="position-popup" id="modification_password">
+    <div class="form-popup">
+        <span class="title-popup border-radius-top">Changer mon mot de passe</span>
+        <form action="index.php" method="POST" class="flex-login">
+            <input name="password" type="password" placeholder="Taper votre mot de passe..." required> 
+            <input name="confirmPassword" type="password" placeholder="Votre nouveau mot de pase..." required>
+            <input type="hidden" name="name" value="modification_password">
+            <button type="submit" class="button-popup cyan">Confirmer</button>
+            <button onclick="closeForm('modification_password'); openForm('profil');" class="">Annuler</button>
+        </form>
+    </div>
+    <button class="close-popup rouge-pastel" onclick="closeForm('modification_password')">✖</button>
 </div>

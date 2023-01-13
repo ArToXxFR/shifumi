@@ -5,7 +5,7 @@ require_once __DIR__ . "/includes/functions_request_bdd.php";
 require_once __DIR__ . "/includes/functions_shifumi.php";
 $jeu_lance = false;
 
-if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
+if (userConnected()) {
     if (isset($_SESSION['resultat'])) {
         $jeu_lance = true;
         // Affichage de l'icone que le joueur a choisi
@@ -23,6 +23,11 @@ if (isset($_SESSION['pseudo']) && isset($_SESSION['image'])) {
     }
 } else {
     header('Location: index.php');
+}
+
+if(!isset($_SESSION['already_played'])){
+    $_SESSION['already_played'] = 1;
+    date_first_game($dbh);
 }
 
 ?>

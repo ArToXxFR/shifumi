@@ -162,6 +162,33 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         } else {
             echo "<script>alert('Adresse email déjà utilisée')</script>";
         }
+    } else if($_POST['name'] == 'delete_profil'){
+        $sth = $dbh->prepare('DELETE FROM user WHERE id=:id');
+        $isNotError = $sth->execute(['id' => $_SESSION['id']]);
+        if ($isNotError) {
+            echo "<script>alert('Le compte a bien été supprimé')</script>";
+            header('Location: deconnection.php');
+        } else {
+            echo "<script>alert('Erreur lors de la suppression du compte')</script>";
+        }
+        
+    } else if($_POST['name'] == 'modification_password'){
+        if(isset($_POST['password']) && isset($_POST['confirmPassword'])){
+            if ($_POST['password'] === $_POST['confirmPassword']) {
+                $password = password_hash(GRAIN . $_POST['password'] . SEL, PASSWORD_ARGON2ID);
+                $sth = $dbh->prepare('UPDATE user 
+                                    SET password=:password
+                                    WHERE id=:id');
+                $isNotError = $sth->execute(['password' => $password, 'id' => $_SESSION['id']]);
+                if ($isNotError) {
+                    echo "<script>alert('Le mot de passe a bien été modifié')</script>";
+                } else {
+                    echo "<script>alert('Erreur lors de la modification du mot de passe')</script>";
+                }
+            } else {
+                echo "<script>alert('Les deux mots de passe ne correspondent pas')</script>";
+            }
+        }
     }
 }
 
