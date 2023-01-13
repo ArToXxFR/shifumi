@@ -8,12 +8,15 @@ $jeu_lance = false;
 if (userConnected()) {
     if (isset($_SESSION['resultat'])) {
         $jeu_lance = true;
-        // Affichage de l'icone que le joueur a choisi
+        /* Affichage de l'icone que le joueur a choisi
+        Ainsi que l'icone que bender a choisi */
         $choix_utilisateur = $_SESSION['resultat'][2];
         $choix_bender = $_SESSION['resultat'][0];
         $resultat_jeu = $_SESSION['resultat'][1];
         $icon_choix_utilisateur = icon_jeu($choix_utilisateur);
         $icon_choix_bender = icon_jeu($choix_bender);
+        /* Une fois arrivé au tour 5, on réinitialise tout
+        pour que l'algorithme reparte de zéro */
         if ($_SESSION['tour'] == 5) {
             $_SESSION['tour'] = 0;
             $_SESSION['choix_bender'] = [];

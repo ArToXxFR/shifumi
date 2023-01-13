@@ -39,6 +39,8 @@ $shifumi = [
     ]
 ];
 
+/* On ajoute ici le score que l'utilisateur a obtenu */
+
 $resultat = $shifumi[$choix_utilisateur][$choix_bender];
 switch($resultat){
     case 'gagne':
@@ -54,7 +56,6 @@ switch($resultat){
                             SET looses = looses + 1
                             WHERE pseudo = :pseudo;');
         $isNotError = $sth->execute(['pseudo' => $_SESSION['pseudo']]);
-        if(!$isNotError){ print_r($sth->errorInfo()); }
         break;
     case 'egalite':
         $compte_rendu_resultat = [$choix_bender, 'null', $choix_utilisateur];

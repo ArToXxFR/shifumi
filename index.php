@@ -163,6 +163,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             echo "<script>alert('Adresse email déjà utilisée')</script>";
         }
     } else if($_POST['name'] == 'delete_profil'){
+        /* Ici on supprime directement le profil du joueur */
         $sth = $dbh->prepare('DELETE FROM user WHERE id=:id');
         $isNotError = $sth->execute(['id' => $_SESSION['id']]);
         if ($isNotError) {
@@ -173,8 +174,13 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         }
         
     } else if($_POST['name'] == 'modification_password'){
+
+        /* On va d'abord vérifier que l'utilisateur a bien saisi deux mots de passe,
+        Puis on vérifie si les deux mots de passes correspondent */
+
         if(isset($_POST['password']) && isset($_POST['confirmPassword'])){
             if ($_POST['password'] === $_POST['confirmPassword']) {
+                /* On hash le mot de passe avec un grain de sel puis on fait directement le requête SQL */
                 $password = password_hash(GRAIN . $_POST['password'] . SEL, PASSWORD_ARGON2ID);
                 $sth = $dbh->prepare('UPDATE user 
                                     SET password=:password
