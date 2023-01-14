@@ -109,7 +109,6 @@
         <div class="form-popup">
                 <span class="title-popup border-radius-top">Tableau des scores</span>
                 <?php $scoreboard = recuperation_scoreboard($dbh); ?>
-                    
                 <table>
                     <?php for($i = 0; $i < 10; $i++){ ?>
                     <tr>

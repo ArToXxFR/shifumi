@@ -2,7 +2,6 @@
 
 require_once __DIR__ . "/includes/connect_bdd.php";
 require_once __DIR__ . "/includes/functions_request_bdd.php";
-require_once __DIR__ . "/includes/functions_shifumi.php";
 $jeu_lance = false;
 
 if (userConnected()) {
@@ -33,6 +32,29 @@ if(!isset($_SESSION['already_played'])){
     date_first_game($dbh);
 }
 
+/* Affichage de l'icon selectionné par le joueur ou par bender */
+
+function icon_jeu($choix)
+{
+    switch ($choix) {
+        case 'pierre':
+            $icon = '/icons_jeu/pierre.png';
+            break;
+        case 'papier':
+            $icon = '/icons_jeu/papier.png';
+            break;
+        case 'ciseaux':
+            $icon = '/icons_jeu/ciseaux.png';
+            break;
+        default:
+            echo "<script>alert('Erreur lors du choix du jeu');</script>";
+            unset($_POST['shifumi']);
+            header('Location: play.php');
+    }
+    return $icon;
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +72,6 @@ if(!isset($_SESSION['already_played'])){
 <body>
     <?php require_once __DIR__ . "/includes/header.php"; ?>
     <?php if (!$jeu_lance) { ?>
-
         <div class="page_container">
             <div class="description mots_gras"> Choisis l'un des 3 signes :</div>
             <form method="POST" action="choix_bender.php" onsubmit="return valider_jeu()">

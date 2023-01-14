@@ -49,17 +49,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             /* On vérifie que le formulaire soit un register et non pas un login */
         } else if ($_POST['name'] == 'register') {
 
-            /* On vérifie ici si l'email saisie par l'utilisateur existe déjà dans la BDD */
-
-            $sth = $dbh->prepare("SELECT email FROM user WHERE email=:email");
-            $sth->execute(['email' => strtolower($_POST['email'])]);
-            $emailAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
-
-            /* On vérifie ici si le pseudo saisie par l'utilisateur existe déjà dans la BDD */
-
-            $sth = $dbh->prepare("SELECT pseudo FROM user WHERE pseudo=:pseudo");
-            $sth->execute(['pseudo' => $_POST['pseudo']]);
-            $pseudoAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
+            $pseudoAlreadyExist = isPseudoExist($dbh);
+            $emailAlreadyExist = isEmailExist($dbh);
 
             $sth = $dbh->prepare('SELECT id FROM avatar WHERE image=:image');
             $isNotError = $sth->execute(['image' => $_POST['avatar']]);
@@ -101,17 +92,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
     }
     if ($_POST['name'] == 'modification_profil') {
-        /* On vérifie ici si l'email saisie par l'utilisateur existe déjà dans la BDD */
 
-        $sth = $dbh->prepare("SELECT email FROM user WHERE email=:email");
-        $sth->execute(['email' => strtolower($_POST['email'])]);
-        $emailAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
-
-        /* On vérifie ici si le pseudo saisie par l'utilisateur existe déjà dans la BDD */
-
-        $sth = $dbh->prepare("SELECT pseudo FROM user WHERE pseudo=:pseudo");
-        $sth->execute(['pseudo' => $_POST['pseudo']]);
-        $pseudoAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
+        $pseudoAlreadyExist = isPseudoExist($dbh);
+        $emailAlreadyExist = isEmailExist($dbh);
 
         /* On vérifie le pseudo ou l'adresse email existent déjà dans la base de donnée
         A noter que si l'utilisateur rentre son propre pseudo ou email, 
@@ -149,13 +132,11 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                     $avatar = $sth->fetch(PDO::FETCH_ASSOC);
                     $_SESSION['image'] = $avatar['image'];
                 }
-                // A revoir car l'email ou le pseudo va forcément être utilisé
                 if ($isNotError) {
                     echo "<script>alert('Le compte a bien été modifié')</script>";
                 } else {
                     echo "<script>alert('Erreur lors de la modification du compte')</script>";
                 }
-                ;
             } else {
                 echo "<script>alert('Pseudo déjà utilisée')</script>";
             }
