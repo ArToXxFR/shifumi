@@ -11,11 +11,17 @@ session_start();
 
 require_once __DIR__ . "/includes/connect_bdd.php";
 require_once __DIR__ . "/includes/functions_request_bdd.php";
-require_once __DIR__ . "/includes/functions_shifumi.php";
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
     header('Location: play.php');
 }
+
+/* Ajout de l'adresse IP du joueur ainsi que la date et l'heure */
+
+$sth = $dbh->prepare('UPDATE user 
+SET ip=:ip, date_last_game= (CURRENT_TIMESTAMP)
+WHERE pseudo = :pseudo;');
+$sth->execute(['pseudo' => $_SESSION['pseudo'], 'ip' => $_SERVER['REMOTE_ADDR']]);
 
 /* Comparaison pour savoir si le joueur a gagné ou non */
 
@@ -69,12 +75,48 @@ switch($resultat){
         header('Location: play.php');
 }
 
-/* Ajout de l'adresse IP du joueur */
+/* Logique du choix que bender va faire */
 
-$sth = $dbh->prepare('UPDATE user 
-SET ip=:ip, date_last_game= (CURRENT_TIMESTAMP)
-WHERE pseudo = :pseudo;');
-$sth->execute(['pseudo' => $_SESSION['pseudo'], 'ip' => $_SERVER['REMOTE_ADDR']]);
+function algo_choix_bender() {
+    $_SESSION['tour']+= 1;
+    $options = ['pierre', 'papier', 'ciseaux'];
+    $_SESSION['choix_utilisateur'][$_SESSION['tour']] = $_POST['shifumi'];
+    if($_SESSION['tour'] == 1){
+        $_SESSION['choix_bender'][$_SESSION['tour']] = $options[array_rand($options)];
+        $_SESSION['compteur_choix'][$_SESSION['choix_bender'][$_SESSION['tour']]]++;
+    } elseif($_SESSION['tour'] == 2){
+        $_SESSION['choix_bender'][$_SESSION['tour']] = inverse_joueur($_SESSION['choix_utilisateur'][1]);
+        $_SESSION['compteur_choix'][$_SESSION['choix_bender'][$_SESSION['tour']]]++;
+    } elseif($_SESSION['tour'] == 3){
+        $_SESSION['choix_bender'][$_SESSION['tour']] = $_SESSION['choix_bender'][1];
+        $_SESSION['compteur_choix'][$_SESSION['choix_bender'][$_SESSION['tour']]]++;
+    } elseif($_SESSION['tour'] == 4){
+        $_SESSION['choix_bender'][$_SESSION['tour']] = array_search(min($_SESSION['compteur_choix']), $_SESSION['compteur_choix']);
+        $_SESSION['compteur_choix'][$_SESSION['choix_bender'][$_SESSION['tour']]]++;
+    } elseif($_SESSION['tour'] == 5){
+        $_SESSION['choix_bender'][$_SESSION['tour']] = $_SESSION['choix_bender'][4];
+    }
+    return $_SESSION['choix_bender'][$_SESSION['tour']];
+}
+
+/* Algorithme pour choisir le contre de ce que le joueur a choisit au tour d'avant */
+
+function inverse_joueur($choix_utilisateur) {
+    switch($choix_utilisateur){
+        case 'pierre':
+            return 'papier';
+            break;
+        case 'papier':
+            return 'ciseaux';
+            break;
+        case 'ciseaux':
+            return 'pierre';
+            break;
+        default:
+            echo "<script>alert('Erreur lors du choix utilisateur');</script>";
+            header('Location: play.php');
+    }
+}
 
 $_SESSION['resultat'] = $compte_rendu_resultat;
 header('Location: play.php');
