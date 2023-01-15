@@ -9,7 +9,7 @@
 
 session_start();
 
-require_once __DIR__ . "/includes/connect_bdd.php";
+require_once __DIR__ . "/connect_bdd.php";
 require_once __DIR__ . "/includes/functions_request_bdd.php";
 
 if($_SERVER['REQUEST_METHOD'] !== 'POST'){
