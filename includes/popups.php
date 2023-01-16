@@ -82,11 +82,11 @@
                         <?php } ?>
                     </select>
                     <img src="medias/avatars/avatars_fry.png" alt="avatar" id="avatar" width="50px">
-                    <button type="submit">Terminer</button>
+                    <button type="submit" onclick="closeForm('register');">Terminer</button>
                 </div>
             </form>
         </div>
-        <div class="first-step-register" id="first-step-buttons">
+        <div class=" first-step-register" id="first-step-buttons">
             <button onclick="closeForm('register'); openForm('login');">Précédent</button>
             <button onclick="nextstep();">Suivant</button>
         </div>
@@ -135,7 +135,7 @@
                 </tr>
             <?php } ?>
         </table>
-        <?php if(userConnected()){ ?>
+        <?php if (userConnected()) { ?>
             <span class="title-popup border-radius-top purple">Mon score</span>
             <table>
                 <tr>
@@ -232,3 +232,20 @@
     </div>
     <button class="close-popup rouge-pastel" onclick="closeForm('delete_profil')">✖</button>
 </div>
+
+<!------------------------------------------------------------
+---------Popup de félicitations--------------------------------
+------------------------------------------------------------->
+
+<div class="position-popup" id="felicitation">
+    <div class="form-popup">
+        <h2 class="title-popup vert">Félicitations</h2>
+        <div class="content-popup">
+            <span class="choice">Votre compte a été créé <span class="smiley_fete"></span> !</span>
+            <span>Nous vous avons envoyé un mail de confirmation.</span>
+            <div class="img_check"></div>
+            <button class="open-button jaune" onclick="document.location.href='play.php'">Faire votre 1ère partie</button>
+        </div>
+    </div>
+    <button class="close-popup rouge-pastel" onclick="closeForm('felicitation')">✖</button>
+</div

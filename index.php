@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="fr">
+
 <?php session_start();
 
 require_once __DIR__ . "/connect_bdd.php";
@@ -80,6 +83,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                         /* Appel de la fonction qui va créer l'utilisateur dans la base de données */
 
                         creation_compte($dbh, $infosCompte);
+                        echo "<script>sleep(2000); openForm('felicitation'); </script>";
                     } else {
                         echo "<script>alert('Les deux mots de passe ne correspondent pas')</script>";
                     }
@@ -90,7 +94,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                 echo "<script>alert('Adresse email déjà utilisée')</script>";
             }
         }
-
     }
     if ($_POST['name'] == 'modification_profil') {
 
@@ -103,7 +106,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         if (empty($emailAlreadyExist)) {
             if (empty($pseudoAlreadyExist)) {
                 /* Si l'utilisateur a rentré un nouveau pseudo, il est modifié */
-                if(!empty($_POST['pseudo'])){
+                if (!empty($_POST['pseudo'])) {
                     $sth = $dbh->prepare('UPDATE user SET pseudo=:new_pseudo WHERE pseudo=:old_pseudo');
                     $isNotError = $sth->execute([
                         'new_pseudo' => $_POST['pseudo'],
@@ -112,7 +115,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                     $_SESSION['pseudo'] = $_POST['pseudo'];
                 }
                 /* Si l'utilisateur a rentré une nouvelle adresse email, elle est modifiée */
-                if(!empty($_POST['email'])){
+                if (!empty($_POST['email'])) {
                     $sth = $dbh->prepare('UPDATE user SET email=:new_email WHERE email=:old_email');
                     $isNotError = $sth->execute([
                         'new_email' => $_POST['email'],
@@ -121,7 +124,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                     $_SESSION['email'] = $_POST['email'];
                 }
                 /* Si l'utilisateur a changé d'avatar, il est modifié ici */
-                if (!empty($_POST['avatar'])){
+                if (!empty($_POST['avatar'])) {
                     $sth = $dbh->prepare('UPDATE user SET avatar_id=:avatar_id WHERE pseudo=:pseudo');
                     $isNotError = $sth->execute(['avatar_id' => $_POST['avatar'], 'pseudo' => $_SESSION['pseudo']]);
                     $_SESSION['avatar_id'] = $_POST['avatar'];
@@ -144,7 +147,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         } else {
             echo "<script>alert('Adresse email déjà utilisée')</script>";
         }
-    } else if($_POST['name'] == 'delete_profil'){
+    } else if ($_POST['name'] == 'delete_profil') {
         /* Ici on supprime directement le profil du joueur */
         $sth = $dbh->prepare('DELETE FROM user WHERE id=:id');
         $isNotError = $sth->execute(['id' => $_SESSION['id']]);
@@ -154,13 +157,12 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
         } else {
             echo "<script>alert('Erreur lors de la suppression du compte')</script>";
         }
-        
-    } else if($_POST['name'] == 'modification_password'){
+    } else if ($_POST['name'] == 'modification_password') {
 
         /* On va d'abord vérifier que l'utilisateur a bien saisi deux mots de passe,
         Puis on vérifie si les deux mots de passes correspondent */
 
-        if(isset($_POST['password']) && isset($_POST['confirmPassword'])){
+        if (isset($_POST['password']) && isset($_POST['confirmPassword'])) {
             if ($_POST['password'] === $_POST['confirmPassword']) {
                 /* On hash le mot de passe avec un grain de sel puis on fait directement le requête SQL */
                 $password = password_hash(GRAIN . $_POST['password'] . SEL, PASSWORD_ARGON2ID);
@@ -178,11 +180,13 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             }
         }
     }
+    if (isset($_SESSION['successfullyCreated']) && $_SESSION['successfullyCreated'] == 1) {
+        echo "<script>openForm('felicitation'); </script>";
+        $_SESSION['successfullyCreated'] = 0;
+    }
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
