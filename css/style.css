@@ -1210,6 +1210,7 @@ input::placeholder {
     width: 100%;
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 /* Pour le lancement du jeu "SH... FU... MI !" */
@@ -1236,12 +1237,51 @@ input::placeholder {
 .after_game_message {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 /* Pour centrer l'image de Bender avec le message */
 
 .image_center {
     text-align: center;
+}
+
+/* Pour les smileys du message de la partie */
+
+.smiley_content,
+.smiley_anxious,
+.smiley_hands {
+    font-family: "Font Awesome Regular";
+    font-size: 20px;
+    vertical-align: text-top;
+    padding: 9px;
+}
+
+.smiley_content::before {
+    content: "";
+}
+
+.smiley_anxious::before {
+    content: "";
+}
+
+.smiley_hands::before {
+    content: "";
+}
+
+/* Pour centrer et aligner le texte, l'icon jeu et l'icon utilisateur */
+
+.text_choix_icon_jeu {
+    text-align: center;
+}
+
+.image_choix_icon_jeu {
+    display: flex;
+    margin-top: 20px;
+}
+
+.vg {
+    margin-top: 33px;
 }
 
 .scrollableList {
