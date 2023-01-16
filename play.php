@@ -77,33 +77,34 @@ function icon_jeu($choix)
             <form method="POST" action="choix_bender.php" onsubmit="return valider_jeu()">
                 <div class="container">
                     <div class="box">
-                        <p class="mots_gras">Pierre</p>
-                        <img src="/icons_jeu/pierre.png" alt="pierre">
+                        <p class="regles_signes pierre mots-gras">pierre</p>
+
+
                         <input type="radio" name="shifumi" value="pierre" id="pierre" class="input-hidden" required>
                         <label for="pierre" class="radio">
                             <div class="inside-radio"></div>
                         </label>
                     </div>
                     <div class="box">
-                        <p class="mots_gras">Papier</p>
-                        <img src="/icons_jeu/papier.png" alt="papier">
+
+                        <p class="regles_signes papier mots-gras">papier</p>
+
                         <input type="radio" name="shifumi" value="papier" id="papier" class="input-hidden" required>
                         <label for="papier" class="radio">
                             <div class="inside-radio"></div>
                         </label>
                     </div>
                     <div class="box">
-                        <p class="mots_gras">Ciseaux</p>
-                        <img src="/icons_jeu/ciseaux.png" alt="ciseaux">
+                        <p class="regles_signes ciseaux mots-gras">ciseaux</p>
                         <input type="radio" name="shifumi" value="ciseaux" id="ciseaux" class="input-hidden" required>
                         <label for="ciseaux" class="radio">
                             <div class="inside-radio"></div>
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="jaune bouton">Valider mon choix</button>
+                <button type="submit" class="jaune bouton bouton-valider-choix">Valider mon choix</button>
             </form>
-            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton">Annuler la partie</button>
+            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton bouton-annuler-partie">Annuler la partie</button>
         </div>
     <?php } else { ?>
         <div class="page_container fade_out">

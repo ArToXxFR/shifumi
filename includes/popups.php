@@ -148,14 +148,16 @@
         <span class="title-popup border-radius-top cyan">Votre profil</span>
         <div class="content-popup">
             <form action="index.php" method="POST" class="flex-login">
-                <select name="avatar" id="f_selectTrie" required>
-                    <?php $avatar_profile = array_avatars($dbh);
-                    foreach ($avatar_profile as $avatar) { ?>
-                        <option value="<?= $avatar['id'] ?>" <?php if ($_SESSION['avatar_id'] == $avatar['id']) {
-                                                                    echo 'selected';
-                                                                } ?>><?= $avatar['name']  ?></option>
-                    <?php } ?>
-                </select>
+                <div class="select icon_select">
+                    <select name="avatar" id="f_selectTrie" required>
+                        <?php $avatar_profile = array_avatars($dbh);
+                        foreach ($avatar_profile as $avatar) { ?>
+                            <option value="<?= $avatar['id'] ?>" <?php if ($_SESSION['avatar_id'] == $avatar['id']) {
+                                                                        echo 'selected';
+                                                                    } ?>><?= $avatar['name']  ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
                 <div class="input icon_username">
                     <input name="pseudo" type="text" maxlength="25" placeholder="<?= $_SESSION['pseudo']; ?>" class="input-login">
                 </div>

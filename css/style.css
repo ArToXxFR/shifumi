@@ -269,6 +269,8 @@ button {
     background: black;
 }
 
+
+
 /* -------------------------------------------------------------------------------------------------------------
    HEADER
 ------------------------------------------------------------------------------------------------------------- */
@@ -523,6 +525,12 @@ footer button.profile span {
     ;
 }
 
+/* Pour rajouter un espace de 30px au 1er p après l'en-tête */
+
+.position-popup .form-popup .title-popup+p {
+    margin-top: 30px;
+}
+
 /* Container de la popup */
 /* Le seule à ne pas avoir de « z-index: 0 » pour passer au-dessus des autres éléments */
 
@@ -661,36 +669,17 @@ footer button.profile span {
 }
 
 /* -------------------------------------------------------------------------------------------------------------
-   POPUP - REGLES
+   SIGNES
 ------------------------------------------------------------------------------------------------------------- */
 
-/* Pour rajouter un espace de 30px au 1er p après l'en-tête */
-
-.position-popup .form-popup .title-popup+p {
-    margin-top: 30px;
-}
-
-#popupForm .title-popup::before {
-    content: "";
-}
-
-.position-popup .form-popup .regles_signes {
+.regles_signes {
     display: inline-block;
     margin-top: 25px;
     font-family: "Open Sans Bold";
-    margin-left: 15px;
-    margin-right: 15px;
+    text-align: center;
 }
 
-.position-popup .form-popup .regles_signes.pierre {
-    margin-left: 0;
-}
-
-.position-popup .form-popup .regles_signes.ciseaux {
-    margin-right: 0;
-}
-
-.position-popup .form-popup .regles_signes+p {
+.regles_signes+p {
     margin-top: 35px;
 }
 
@@ -725,6 +714,31 @@ footer button.profile span {
 .regles_signes.ciseaux::after {
     background-image: url(../medias/signes/signes_ciseaux.png);
     background-color: #7FCFDA;
+}
+
+.radio:hover .inside-radio {
+    background-color: black;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - REGLES
+------------------------------------------------------------------------------------------------------------- */
+
+#popupForm .title-popup::before {
+    content: "";
+}
+
+#popupForm .regles_signes {
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#popupForm .regles_signes.pierre {
+    margin-left: 0;
+}
+
+#popupForm .regles_signes.ciseaux {
+    margin-right: 0;
 }
 
 /* -------------------------------------------------------------------------------------------------------------
@@ -767,6 +781,7 @@ footer button.profile span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: center;
 }
 
 #scoreboard table tr:first-child td {
@@ -794,6 +809,10 @@ footer button.profile span {
 #scoreboard table tr:first-child td::after {
 text-align: center;
 }
+
+#scoreboard table tr:first-child td::after {
+    text-align: center;
+} 
 
 #scoreboard table tr:first-child td::before {
     height: 54px;
@@ -856,14 +875,17 @@ form:first-child {
 }
 
 
-.input {
+.input,
+.select {
     display: flex;
     position: relative;
     margin-top: 20px;
 }
 
 .input::before,
-.input::after {
+.input::after,
+.select::before,
+.select::after {
     position: absolute;
     z-index: 1;
     top: 50%;
@@ -910,7 +932,7 @@ form:first-child {
 input {
     border: 2px solid black;
     height: 44px;
-    width: calc(100% - 34px);
+    width: 100%;
     border-radius: 5px;
     padding-left: 43px;
     padding-right: 15px;
@@ -925,6 +947,33 @@ input:focus {
 
 input::placeholder {
     color: black;
+}
+
+select {
+    width: 100%;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    cursor: pointer;
+}
+
+.select::after {
+    right: 0;
+    content: "";
+    width: 46px;
+    height: 46px;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 /* -------------------------------------------------------------------------------------------------------------
@@ -1118,6 +1167,7 @@ input::placeholder {
     justify-content: center;
     align-items: center;
     border-radius: 0.3em;
+    cursor: pointer;
 }
 
 .radio>.inside-radio {
