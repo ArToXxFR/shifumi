@@ -165,7 +165,7 @@ body * {
 /* Pour afficher les mots en gras */
 
 .mots_gras {
-    font-weight: bold;
+    font-family: "Open Sans Bold";
 }
 
 
@@ -191,6 +191,14 @@ button::after {
     font-size: 20px;
     line-height: 1;
     margin: 0 10px;
+}
+
+button::before {
+    margin-left: 0;
+}
+
+button::after {
+    margin-right: 0;
 }
 
 /* Icône flèche à droite */
@@ -245,7 +253,22 @@ button {
     margin-left: 10px;
 }
 
-#login .mots-gras{}
+
+/* -------------------------------------------------------------------------------------------------------------
+   AVATARS
+------------------------------------------------------------------------------------------------------------- */
+
+/* Avatars  */
+
+.img-profile,
+.size_img_profile {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 100%;
+    border: 3px solid black;
+    background: black;
+}
+
 /* -------------------------------------------------------------------------------------------------------------
    HEADER
 ------------------------------------------------------------------------------------------------------------- */
@@ -329,7 +352,7 @@ header h1 {
     position: absolute;
     height: 42px;
     width: 43px;
-    background-image: url(../medias/autres/\ rature_hal.svg);
+    background-image: url(../medias/autres/rature_hal.svg);
 }
 
 .page_container .description .rayures {
@@ -362,7 +385,11 @@ header h1 {
     background-repeat: no-repeat;
     background-position: center;
     width: 100%;
-    height: calc(100% - 207px);
+    height: calc(100% - 247px);
+    max-height: 275px;
+    background-size: contain;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
@@ -384,6 +411,10 @@ footer {
 footer button {
     height: 60px;
     border-radius: 0;
+}
+
+footer button:not(.score, .connection-button) {
+    width: 50%;
 }
 
 /* Icône table à gauche du 1er bouton et background */
@@ -408,25 +439,70 @@ footer button.cyan::before {
 footer button.profile,
 footer button.deconnection-button {
     float: left;
-
 }
 
 footer button.profile {
-    border-right: none;
-    width: calc(50% - 1.5px)
+    border-right: 2px solid black;
+    /* width:calc(100% - 254px); */
 }
+
+/* Icône person-to-door à gauche du 2ème bouton et background */
 
 footer button.deconnection-button {
-    width: calc(50% + 1.5px)
+    border-left: 2px solid black;
+    /* width: 254px; */
 }
 
-/* Avatars  */
-
-.img-profile,
-.size_img_profile {
-    width: 40px !important;
-    height: 40px !important;
+footer button.deconnection-button span {
+    font-family: "Futura Medium";
+    font-size: 20px;
+    line-height: 1.5;
 }
+
+footer button.deconnection-button::before {
+    content: "";
+}
+
+/* Bouton profil */
+
+footer button.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer button.profile::before {
+    display: none;
+}
+
+footer button.profile span {
+    font-family: "Open Sans Bold";
+    margin-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+@media all and (max-width: 550px) {
+
+    footer button.profile {
+        width: calc(100% - 60px);
+    }
+
+    footer button.deconnection-button {
+        width: 60px;
+    }
+
+    footer button.deconnection-button span {
+        display: none;
+    }
+
+    footer button.deconnection-button::after {
+        display: none;
+    }
+
+}
+
 
 /* -------------------------------------------------------------------------------------------------------------
    POPUP - GENERAL
@@ -464,19 +540,18 @@ footer button.deconnection-button {
 
 .position-popup .form-popup {
     position: relative;
-    height: calc(100% - 150px);
+    height: calc(100vh - 150px);
     max-width: 800px;
     margin: 0 auto;
     margin-top: 30px;
-    background: white;
-    border: 3px solid black;
-    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 /* L'en-tête de la popup */
 
 .position-popup .form-popup .title-popup::before {
-    content: "";
+    content: "";
     margin-right: 10px;
     font-family: "Font Awesome Regular";
     font-size: 30px;
@@ -487,17 +562,31 @@ footer button.deconnection-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70px;
-    width: 100%;
+    height: 64px;
+    width: cacl(100% - 6px);
     font-family: "Futura Medium";
     font-size: 20px;
     line-height: 1.5;
-    background: #E85581;
     border: 3px solid black;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    margin-left: -3px;
+}
+
+/* Le contenu de la popup */
+
+.position-popup .content-popup {
+    overflow: hidden;
+    overflow-y: scroll;
+    height: calc(100% - 73px - 30px);
+    padding-bottom: 30px;
     margin-top: -3px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border: 3px solid black;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: white;
+    position: relative;
 }
 
 /* Bouton pour fermer la popup */
@@ -519,6 +608,57 @@ footer button.deconnection-button {
     display: none;
 }
 
+/* Les différents backgrounds */
+
+.title-popup.rouge-pastel {
+    background: #E85581;
+}
+
+.title-popup.jaune {
+    background: #FDDE58;
+}
+
+.title-popup.purple {
+    background: #8B7AFF;
+}
+
+.title-popup.cyan {
+    background: #7FCFDA;
+}
+
+/* Boutons côte à côte en bas de la popup */
+
+.footer-popup {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 30px);
+    padding: 30px 15px;
+    padding-top: 27px;
+    border-top: 3px solid black;
+    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.25);
+}
+
+.footer-popup button {
+    float: left;
+    width: calc(50% - 7.5px);
+}
+
+.footer-popup .bouton-gauche {
+    margin-right: 7.5px;
+}
+
+.footer-popup .bouton-droite {
+    margin-left: 7.5px;
+}
+
+.footer-popup .bouton-gauche::after {
+    display: none;
+}
+
+.footer-popup .bouton-gauche::before {
+    content: "";
+}
 
 /* -------------------------------------------------------------------------------------------------------------
    POPUP - REGLES
@@ -530,6 +670,10 @@ footer button.deconnection-button {
     margin-top: 30px;
 }
 
+#popupForm .title-popup::before {
+    content: "";
+}
+
 .position-popup .form-popup .regles_signes {
     display: inline-block;
     margin-top: 25px;
@@ -538,12 +682,421 @@ footer button.deconnection-button {
     margin-right: 15px;
 }
 
+.position-popup .form-popup .regles_signes.pierre {
+    margin-left: 0;
+}
+
+.position-popup .form-popup .regles_signes.ciseaux {
+    margin-right: 0;
+}
+
 .position-popup .form-popup .regles_signes+p {
     margin-top: 35px;
 }
 
 .position-popup .form-popup p {
     margin-top: 20px;
+}
+
+.regles_signes::after {
+    content: "";
+    display: flex;
+    width: 74px;
+    height: 74px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 3px solid black;
+    border-radius: 100%;
+    margin-top: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.regles_signes.pierre::after {
+    background-image: url(../medias/signes/signes_pierre.png);
+    background-color: #E85581;
+
+}
+
+.regles_signes.papier::after {
+    background-image: url(../medias/signes/signes_papier.png);
+    background-color: #FDDE58;
+}
+
+.regles_signes.ciseaux::after {
+    background-image: url(../medias/signes/signes_ciseaux.png);
+    background-color: #7FCFDA;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - TABLEAU DES SCORES
+------------------------------------------------------------------------------------------------------------- */
+
+#scoreboard .title-popup::before {
+    content: "";
+}
+
+#scoreboard table {
+    display: flex;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: calc(100% - 73px);
+    margin-top: -3px;
+    border: 3px solid black;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background: white;
+}
+
+#scoreboard table tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#scoreboard table td {
+    overflow: hidden;
+    border: 3px solid black;
+    height: 54px;
+    width: calc(100% / 6);
+}
+
+#scoreboard table td span {
+    font-family: "Open Sans Bold";
+    margin: 10px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#scoreboard table tr:first-child td {
+    position: relative;
+    padding-top: 57px;
+    border-top: 0;
+}
+
+#scoreboard table img {
+    display: flex;
+    margin: 0 auto;
+}
+
+#scoreboard table tr:first-child td::before,
+#scoreboard table tr:first-child td::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: "Font Awesome Regular";
+    font-size: 30px;
+    line-height: 1;
+}
+
+#scoreboard table tr:first-child td::before {
+    height: 54px;
+    border-bottom: 3px solid black;
+    background: rgb(139 122 255 / 30%);
+}
+
+#scoreboard table tr:first-child td:nth-child(1):after {
+    top: 12px;
+    content: "";
+}
+
+#scoreboard table tr:first-child td:nth-child(2)::after {
+    top: 12px;
+    content: "";
+}
+
+#scoreboard table tr:first-child td:nth-child(3)::after {
+    top: 13px;
+    content: "";
+}
+
+#scoreboard table tr:first-child td:nth-child(4)::after {
+    top: 12px;
+    content: "";
+}
+
+#scoreboard table tr:first-child td:nth-child(5)::after {
+    top: 15px;
+    content: "";
+}
+
+#scoreboard table tr:first-child td:nth-child(6)::after {
+    top: 15.5px;
+    content: "";
+}
+
+#scoreboard table tr:first-child td {
+    border-top: 0;
+}
+
+#scoreboard table tr:last-child td {
+    border-bottom: 0;
+}
+
+#scoreboard table td:first-child {
+    border-left: 0;
+}
+
+#scoreboard table td:last-child {
+    border-right: 0;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   FORMULAIRE
+------------------------------------------------------------------------------------------------------------- */
+
+form:first-child {
+    margin-top: 30px;
+}
+
+
+.input {
+    display: flex;
+    position: relative;
+    margin-top: 20px;
+}
+
+.input::before,
+.input::after {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    content: "";
+    font-family: "Font Awesome Regular";
+    font-size: 18px;
+    line-height: 1;
+    font-style: normal;
+    width: 18px;
+    height: 18px;
+}
+
+.input.icon_username,
+.input.icon_email {
+    margin-top: 30px;
+}
+
+.input::before {
+    left: 15px;
+}
+
+.input::after {
+    right: 15px;
+}
+
+
+.input.icon_username::before {
+    content: "";
+}
+
+.input.icon_email::before {
+    content: "";
+}
+
+.input.icon_password::before {
+    content: "";
+}
+
+.input.icon_password::after {
+    content: "";
+}
+
+input {
+    border: 2px solid black;
+    height: 44px;
+    width: calc(100% - 34px);
+    border-radius: 5px;
+    padding-left: 43px;
+    padding-right: 15px;
+    position: relative;
+}
+
+input:focus {
+    outline: none !important;
+    border: 2px solid black;
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.5);
+}
+
+input::placeholder {
+    color: black;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - LOGIN
+------------------------------------------------------------------------------------------------------------- */
+
+#login .content-popup.creation_compte {
+    height: 80px;
+    border-bottom: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#login .content-popup.creation_compte .button-popup {
+    margin-top: 30px
+}
+
+#login .content-popup.connexion {
+    height: calc(100% - 73px - 70px - 110px - 30px);
+    padding-bottom: 30px;
+}
+
+#login .title-popup.ombre-top {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    filter: drop-shadow(0px -5px 10px rgba(0, 0, 0, 0.25));
+}
+
+#login .button-popup.jaune::before {
+    content: "";
+}
+
+#login .button-popup.cyan::before {
+    content: "";
+}
+
+#login span.mots_gras {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#login button {
+    margin-top: 25px;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - PROFIL
+------------------------------------------------------------------------------------------------------------- */
+
+#profil .title-popup::before {
+    content: "";
+}
+
+#profil button.button-popup {
+    margin-top: 20px;
+}
+
+#profil button.button-popup.cyan::before {
+    content: "";
+
+}
+
+#profil button.button-popup.jaune::before {
+    content: "";
+}
+
+#profil button.button-popup.rouge-pastel::before {
+    content: "";
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - MODIFIER MOT DE PASSE
+------------------------------------------------------------------------------------------------------------- */
+
+#modification_password .title-popup::before {
+    content: "";
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - SUPPRIMER COMPTE
+------------------------------------------------------------------------------------------------------------- */
+
+#delete_profil .title-popup::before {
+    content: "";
+}
+
+#delete_profil .content-popup span {
+    display: flex;
+    justify-content: center;
+    font-family: "Futura Medium";
+    font-size: 20px;
+    line-height: 1.5;
+    margin-top: 25px;
+}
+
+#delete_profil button.button-popup.rouge-pastel {
+    margin-top: 25px;
+}
+
+#delete_profil button.button-popup.jaune {
+    margin-top: 20px;
+}
+
+#delete_profil button.button-popup.rouge-pastel::before {
+    content: "";
+}
+
+
+#delete_profil button.button-popup.jaune::before {
+    content: "";
+}
+
+#delete_profil button.button-popup.jaune::after {
+    content: "";
+}
+
+.bender_remove {
+    background-image: url(../medias/bender_message/bender_remove.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: calc(100% - 247px);
+    max-height: 194px;
+    background-size: contain;
+    margin-top: 30px;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+   POPUP - DECONNEXION
+------------------------------------------------------------------------------------------------------------- */
+
+#deconnection .title-popup::before {
+    content: "";
+}
+
+#deconnection .content-popup span {
+    display: flex;
+    justify-content: center;
+    font-family: "Futura Medium";
+    font-size: 20px;
+    line-height: 1.5;
+    margin-top: 25px;
+}
+
+#deconnection button.button-popup.rouge-pastel {
+    margin-top: 25px;
+}
+
+#deconnection button.button-popup.jaune {
+    margin-top: 20px;
+}
+
+#deconnection button.button-popup.rouge-pastel::before {
+    content: "";
+}
+
+
+#deconnection button.button-popup.jaune::before {
+    content: "";
+}
+
+#deconnection button.button-popup.jaune::after {
+    content: "";
+}
+
+.bender_terminator {
+    background-image: url(../medias/bender_message/bender_terminator.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: calc(100% - 247px);
+    max-height: 194px;
+    background-size: contain;
+    margin-top: 30px;
 }
 
 /* -------------------------------------------------------------------------------------------------------------
@@ -689,4 +1242,56 @@ footer button.deconnection-button {
 
 .image_center {
     text-align: center;
+}
+
+.scrollableList {
+    font: 12px'Arial';
+    color: #666;
+    width: 200px;
+    float: left;
+    background: #FFF;
+    display: none;
+    padding: 5px;
+    border-radius: 3px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #B3B3B3;
+}
+
+.scrollableList ul {
+    padding: 3px 0px 3px 0px;
+    margin: 0;
+    margin-left: -5px;
+    position: absolute;
+    width: 208px;
+    background: #FAFAFA;
+    margin-top: 5px;
+    border: 1px solid #DEDEDE;
+}
+
+.scrollableList ul li {
+    list-style: none;
+    cursor: pointer;
+    margin-left: 14px;
+    line-height: 25px;
+}
+
+.selectedOption {
+    margin-left: 10px;
+    margin-top: 2px;
+    cursor: pointer;
+    background: url('http://img2.wikia.nocookie.net/__cb20120818025551/merlin1/images/4/46/Drop_down_arrow.gif') no-repeat right;
+    height: 20px;
+}
+
+.scrollableList ul li:hover {
+    color: #c33;
+}
+
+.selectedOption:hover {
+    color: #333;
+}
+
+.selectedOption {
+    font-weight: bold;
 }
