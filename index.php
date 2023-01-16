@@ -37,12 +37,13 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
 
                     users_infos($dbh, $userInfoLogin);
                 } else {
-                    echo "<script>openForm('login');</script>";
+                    echo "<script>alert('Login ou mot de passe incorrect')</script>";
+
                     $incorrectId = true;
                 }
             } else {
                 //Le pseudo ou l'adresse email n'a pas été trouvé dans la base de données
-                echo "<script>openForm('login');</script>";
+                echo "<script>alert('Login ou mot de passe incorrect')</script>";
                 $incorrectId = true;
             }
 
