@@ -27,7 +27,7 @@ if (userConnected()) {
     header('Location: index.php');
 }
 
-if(!isset($_SESSION['already_played'])){
+if (!isset($_SESSION['already_played'])) {
     $_SESSION['already_played'] = 1;
     date_first_game($dbh);
 }
@@ -77,33 +77,34 @@ function icon_jeu($choix)
             <form method="POST" action="choix_bender.php" onsubmit="return valider_jeu()">
                 <div class="container">
                     <div class="box">
-                        <p class="mots_gras">Pierre</p>
-                        <img src="/icons_jeu/pierre.png" alt="pierre">
+                        <p class="regles_signes pierre mots-gras">pierre</p>
+
+
                         <input type="radio" name="shifumi" value="pierre" id="pierre" class="input-hidden" required>
                         <label for="pierre" class="radio">
                             <div class="inside-radio"></div>
                         </label>
                     </div>
                     <div class="box">
-                        <p class="mots_gras">Papier</p>
-                        <img src="/icons_jeu/papier.png" alt="papier">
+
+                        <p class="regles_signes papier mots-gras">papier</p>
+
                         <input type="radio" name="shifumi" value="papier" id="papier" class="input-hidden" required>
                         <label for="papier" class="radio">
                             <div class="inside-radio"></div>
                         </label>
                     </div>
                     <div class="box">
-                        <p class="mots_gras">Ciseaux</p>
-                        <img src="/icons_jeu/ciseaux.png" alt="ciseaux">
+                        <p class="regles_signes ciseaux mots-gras">ciseaux</p>
                         <input type="radio" name="shifumi" value="ciseaux" id="ciseaux" class="input-hidden" required>
                         <label for="ciseaux" class="radio">
                             <div class="inside-radio"></div>
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="jaune bouton">Valider mon choix</button>
+                <button type="submit" class="jaune bouton bouton-valider-choix">Valider mon choix</button>
             </form>
-            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton">Annuler la partie</button>
+            <button onclick="document.location.href='index.php'" class="button rouge-pastel bouton bouton-annuler-partie">Annuler la partie</button>
         </div>
     <?php } else { ?>
         <div class="page_container fade_out">
@@ -112,12 +113,48 @@ function icon_jeu($choix)
                 <div class="futura_50px_medium mots_gras">SHI... FU... MI !</div>
                 <div class="container">
                     <div class="box1">
-                        <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
-                        <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
+                        <?php switch ($choix_utilisateur) {
+                            case 'pierre': ?>
+                                <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile vg">
+                                <span class="mots_gras text_choix_icon_jeu">pierre
+                                    <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                                </span>
+                            <?php break;
+                            case 'papier': ?>
+                                <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile vg">
+                                <span class="mots_gras text_choix_icon_jeu">papier
+                                    <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                                </span>
+                            <?php break;
+                            case 'ciseaux': ?>
+                                <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile vg">
+                                <span class="mots_gras text_choix_icon_jeu">ciseaux
+                                    <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                                </span>
+                        <?php break;
+                        } ?>
                     </div>
                     <div class="box1">
-                        <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
-                        <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
+                        <?php switch ($choix_bender) {
+                            case 'pierre': ?>
+                                <span class="mots_gras text_choix_icon_jeu">pierre
+                                    <img src="<?= $icon_choix_bender; ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                                </span>
+                                <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile vg">
+                            <?php break;
+                            case 'papier': ?>
+                                <span class="mots_gras text_choix_icon_jeu">papier
+                                    <img src="<?= $icon_choix_bender; ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                                </span>
+                                <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile vg">
+                            <?php break;
+                            case 'ciseaux': ?>
+                                <span class="mots_gras text_choix_icon_jeu">ciseaux
+                                    <img src="<?= $icon_choix_bender; ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                                </span>
+                                <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile vg">
+                        <?php break;
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -126,25 +163,60 @@ function icon_jeu($choix)
         <div class="page_container fade_in">
             <?php switch ($resultat_jeu) {
                 case 'victoire': ?>
-                    <span class="after_game_message futura_28px_medium"> Bravo tu as gagné ! </span>
+                    <span class="after_game_message futura_28px_medium"> Bravo tu as gagné <span class="smiley_content"></span> ! </span>
                 <?php break;
                 case 'defaite': ?>
-                    <span class="after_game_message futura_28px_medium"> Tu as perdu ! </span>
+                    <span class="after_game_message futura_28px_medium"> Tu as perdu <span class="smiley_anxious"></span> ! </span>
                 <?php break;
                 case 'null': ?>
-                    <span class="after_game_message futura_28px_medium"> Match nul ! </span>
+                    <span class="after_game_message futura_28px_medium"> Match nul <span class="smiley_hands"></span> ! </span>
 
             <?php break;
             } ?>
             <div class="container">
                 <div class="box1">
-                    <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile">
-                    <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu">
-
+                    <?php switch ($choix_utilisateur) {
+                        case 'pierre': ?>
+                            <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile vg">
+                            <span class="mots_gras text_choix_icon_jeu">pierre
+                                <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                            </span>
+                        <?php break;
+                        case 'papier': ?>
+                            <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile vg">
+                            <span class="mots_gras text_choix_icon_jeu">papier
+                                <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                            </span>
+                        <?php break;
+                        case 'ciseaux': ?>
+                            <img src="<?= htmlspecialchars($_SESSION['image']) ?>" alt="profil joueur" class="img_profile size_img_profile vg">
+                            <span class="mots_gras text_choix_icon_jeu">ciseaux
+                                <img src="<?= $icon_choix_utilisateur ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                            </span>
+                    <?php break;
+                    } ?>
                 </div>
                 <div class="box1">
-                    <img src="<?= $icon_choix_bender; ?>" alt="icon jeu">
-                    <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile">
+                    <?php switch ($choix_bender) {
+                        case 'pierre': ?>
+                            <span class="mots_gras text_choix_icon_jeu">pierre
+                                <img src="<?= $icon_choix_bender; ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                            </span>
+                            <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile vg">
+                        <?php break;
+                        case 'papier': ?>
+                            <span class="mots_gras text_choix_icon_jeu">papier
+                                <img src="<?= $icon_choix_bender; ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                            </span>
+                            <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile vg">
+                        <?php break;
+                        case 'ciseaux': ?>
+                            <span class="mots_gras text_choix_icon_jeu">ciseaux
+                                <img src="<?= $icon_choix_bender; ?>" alt="icon jeu" class="image_choix_icon_jeu">
+                            </span>
+                            <img src="/medias/avatars/avatars_bender.png" alt="profil joueur" class="img_profile size_img_profile vg">
+                    <?php break;
+                    } ?>
                 </div>
             </div>
             <?php switch ($resultat_jeu) {
