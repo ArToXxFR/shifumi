@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3307
--- Généré le : mar. 10 jan. 2023 à 12:24
+-- Généré le : lun. 16 jan. 2023 à 19:16
 -- Version du serveur : 10.10.2-MariaDB
 -- Version de PHP : 8.0.26
 
@@ -87,16 +87,38 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `pseudo`, `email`, `password`, `wins`, `looses`, `nuls`, `creation_account`, `date_first_game`, `date_last_game`, `ip`, `avatar_id`) VALUES
-(1, 'ArToXx', 'artoxxfr@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$YUFraVh6ZHM2Nk8uZXZTcg$9B78MRK84Dvi3eQPrmTNvwt8EM9bR+69KIPVL6Mgav0', 3, 4, 3, '2023-01-10 12:07:18', '2023-01-10 12:20:30', '2023-01-10 12:23:32', '::1', 8),
-(2, 'comptetest', 'test@test.fr', '$argon2id$v=19$m=65536,t=4,p=1$WXRKcGhIUnpRNjNmUkJFTg$U+WfRzfARi0Y4o/knQrtoJi+4AYv7MNLY3Y52JblE/E', 0, 0, 0, '2023-01-10 12:13:13', NULL, NULL, NULL, 6),
-(3, 'azertyuiop', 'azertyuiop@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$R0gyc1dtbjhUUlgvaE1KWA$qfHklAu99xmm2oSFGngRzP8VqoxXburz5S3lUvi+tD0', 0, 0, 0, '2023-01-10 12:13:36', NULL, NULL, NULL, 1),
-(4, 'aqwzsxedc', 'aqwzsxedc@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$YmdUcXBXd2lXei8vcER3MA$sG5StNnhEz9D2iPaL5dV5heRTLK13b34Y9xR6Bsu7aQ', 0, 0, 0, '2023-01-10 12:13:59', NULL, NULL, NULL, 7),
-(5, 'Emilien', 'emilien@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$djJ2V21WL1hHcnBLak1aZQ$Dt3WaXfZtm46HCMm43HMN+FFW4MuOeSAvUNpfq9NHKs', 0, 0, 0, '2023-01-10 12:14:29', NULL, NULL, NULL, 1),
+(1, 'ArToXx', 'artoxxfr@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$YUFraVh6ZHM2Nk8uZXZTcg$9B78MRK84Dvi3eQPrmTNvwt8EM9bR+69KIPVL6Mgav0', 945, 1112, 845, '2023-01-10 12:07:18', '2023-01-12 21:05:56', '2023-01-13 07:48:48', '::1', 5),
+(2, 'comptetest', 'test@test.fr', '$argon2id$v=19$m=65536,t=4,p=1$WXRKcGhIUnpRNjNmUkJFTg$U+WfRzfARi0Y4o/knQrtoJi+4AYv7MNLY3Y52JblE/E', 345, 457, 756, '2023-01-10 12:13:13', NULL, NULL, NULL, 6),
+(3, 'azertyuiop', 'azertyuiop@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$R0gyc1dtbjhUUlgvaE1KWA$qfHklAu99xmm2oSFGngRzP8VqoxXburz5S3lUvi+tD0', 451, 54, 123, '2023-01-10 12:13:36', NULL, NULL, NULL, 1),
+(4, 'aqwzsxedc', 'aqwzsxedc@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$YmdUcXBXd2lXei8vcER3MA$sG5StNnhEz9D2iPaL5dV5heRTLK13b34Y9xR6Bsu7aQ', 756, 412, 746, '2023-01-10 12:13:59', NULL, NULL, NULL, 7),
+(5, 'Emilien', 'emilien@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$djJ2V21WL1hHcnBLak1aZQ$Dt3WaXfZtm46HCMm43HMN+FFW4MuOeSAvUNpfq9NHKs', 412, 123, 95, '2023-01-10 12:14:29', NULL, NULL, NULL, 1),
 (6, 'blablabla', 'blablabla@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$YjZqYjZqYXVVdWt1VEdGcA$/bvzgIdDNKft8zu7STRn8adc4l2XxW1+sK82Ol/ZARQ', 0, 0, 0, '2023-01-10 12:16:51', NULL, NULL, NULL, 11),
 (7, 'azerty', 'azerty@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$V3JLb1pYUWREN3pMNXhSTQ$7pDM7xLiGuCCy+Lis37kgyaYSJrBT/kzcUOlFWi8lds', 0, 0, 0, '2023-01-10 12:17:40', NULL, NULL, NULL, 12),
 (8, 'adf', 'adf@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$LnRCdFpRdVFQeUNQMlNtYQ$nZj4wQOywZ+E3u8ePV/8iheGxA+0t5Ch516DQP69Gwc', 0, 0, 0, '2023-01-10 12:18:24', NULL, NULL, NULL, 1),
 (9, 'aaaaaa', 'aaaaaa@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$c3kuZG8wZzdqL3JERC5iLg$F8cXa9u7pZqP7bBGO7HRAQ2R/EnqzEQD3DVLOOQTQhg', 0, 0, 0, '2023-01-10 12:18:47', NULL, NULL, NULL, 1),
 (10, 'bbbbbb', 'bbbbbb@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$bk94Q09iV1VtT2VnazRtSA$vgovxctRkW8E8Ix9ryRdguL+tb2kJfBNNhbS+XD1ucQ', 0, 0, 0, '2023-01-10 12:19:15', NULL, NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Doublure de structure pour la vue `userrank`
+-- (Voir ci-dessous la vue réelle)
+--
+DROP VIEW IF EXISTS `userrank`;
+CREATE TABLE IF NOT EXISTS `userrank` (
+`id` int(11)
+,`rank` varchar(44)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la vue `userrank`
+--
+DROP TABLE IF EXISTS `userrank`;
+
+DROP VIEW IF EXISTS `userrank`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `userrank`  AS SELECT `me`.`id` AS `id`, concat(count(0) + 1,'/',`all_scores`.`total`) AS `rank` FROM ((`user` join (select `user`.`id` AS `id`,`user`.`wins` AS `wins` from `user`) `me`) join (select count(0) AS `total` from `user`) `all_scores`) WHERE `user`.`wins` > `me`.`wins` GROUP BY `me`.`id` union select `user`.`id` AS `id`,concat('1/',`all_scores`.`total`) AS `rank` from (`user` join (select count(0) AS `total` from `user`) `all_scores`) where `user`.`wins` = (select max(`user`.`wins`) from `user`)  ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
