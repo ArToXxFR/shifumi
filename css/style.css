@@ -284,6 +284,7 @@ header {
     justify-content: center;
     height: 80px;
     width: 100%;
+    z-index: 1;
 }
 
 /* Pour ajouter le background */
@@ -402,7 +403,7 @@ header h1 {
 /* Pour fixer le footer en bas du site */
 
 footer {
-    z-index: 0;
+    z-index: 1;
     position: fixed;
     bottom: 0;
     height: fit-content;
@@ -703,7 +704,6 @@ footer button.profile span {
 .regles_signes.pierre::after {
     background-image: url(../medias/signes/signes_pierre.png);
     background-color: #E85581;
-
 }
 
 .regles_signes.papier::after {
@@ -714,6 +714,30 @@ footer button.profile span {
 .regles_signes.ciseaux::after {
     background-image: url(../medias/signes/signes_ciseaux.png);
     background-color: #7FCFDA;
+}
+
+.case-pierre {
+    background-color: #E85581;
+    border: 3px solid black;
+    border-radius: 100%;
+    margin-top: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.case-papier {
+    background-color: #FDDE58;
+    border: 3px solid black;
+    border-radius: 100%;
+    margin-top: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.case-ciseaux {
+    background-color: #7FCFDA;
+    border: 3px solid black;
+    border-radius: 100%;
+    margin-top: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .radio:hover .inside-radio {
@@ -1163,6 +1187,18 @@ select {
    PAGE DE JEU - play.php
 ------------------------------------------------------------------------------------------------------------- */
 
+.choix-container {
+    padding-bottom: 179px;
+}
+
+.page_container.choix-container button.jaune::before{
+    content: "";
+}
+
+.choix-container button.rouge-pastel::before {
+    content: "";
+}
+
 /* Cacher l'ancien bouton du input type radio et le transformer en carré */
 
 .radio {
@@ -1199,21 +1235,31 @@ select {
 
 .container {
     width: 100%;
+    max-width: 800px;
     height: auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 .box {
-    width: 20vw;
-    height: 30vh;
+    height: 253px;
     margin: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    margin: 0 10px;
+}
+
+.container .box-pierre {
+    margin-left: 0;
+}
+
+.container .box-ciseaux {
+    margin-right: 0;
 }
 
 /* Animation pour afficher le résultat */
@@ -1225,6 +1271,9 @@ select {
     animation-timing-function: ease-in;
     animation-duration: 2s;
     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 60px);
 }
 
 .fade_in {
@@ -1233,6 +1282,8 @@ select {
     animation-iteration-count: 1;
     animation-timing-function: ease-in;
     animation-duration: 3s;
+    height: fit-content;
+    padding-bottom: 147px;
 }
 
 @keyframes fadeInOpacity {
@@ -1284,13 +1335,27 @@ select {
 
 /* Pour mettre l'icon de jeu et l'icone de profil côte à côte */
 
+.box1,
+.box2 {
+    display: inline-flex;
+    flex-direction: row;
+}
+
 .box1 {
-    width: 40vw;
-    height: 30vh;
-    margin: 0px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    margin-left: 0;
+}
+
+.box2 {
+    margin-right: 0;
+}
+
+
+.box1 img {
+    margin-right: 15px;
+}
+
+.box2 img {
+    margin-left: 15px;
 }
 
 /* Le message du résultat de la partie */
@@ -1313,9 +1378,8 @@ select {
 .smiley_anxious,
 .smiley_hands {
     font-family: "Font Awesome Regular";
-    font-size: 20px;
-    vertical-align: text-top;
-    padding: 9px;
+    font-size: 30px;
+    margin: 0 10px;
 }
 
 .smiley_content::before {
@@ -1342,7 +1406,7 @@ select {
 }
 
 .vg {
-    margin-top: 33px;
+    margin-top: 45px
 }
 
 .scrollableList {
@@ -1395,4 +1459,12 @@ select {
 
 .selectedOption {
     font-weight: bold;
+}
+
+.fade_in .boutons-resultat-container {
+    display: flex;
+}
+
+.fade_in button.rouge-pastel::before {
+    content: "";
 }
