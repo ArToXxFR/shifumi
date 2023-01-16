@@ -6,7 +6,7 @@ Ce projet est un projet d'école consistant à créer un jeu de shifumi avec une
 ----------------------------
 
 - Grégoire GAUTIER : https://github.com/gregoiregautier
-- Nicolas GUILLEMIN : Lien du github
+- Nicolas GUILLEMIN : https://github.com/Nicox44
 - Emilien CUNY : https://github.com/ArToXxFR
 
 ## Langages utilisés ? 
