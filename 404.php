@@ -9,12 +9,12 @@
 </head>
 <body>
     <?php require "includes/header.php"; ?>
-    <div class="">
+    <div class="page_container_404">
         <h1>Erreur 404</h1>
         <span>La page que vous cherchez semble introuvable.</span>
     </div>
-    <button href="index.php">Revenir à la page d'accueil</button>
-    <button href="javascript:history.go(-1)">Revenir à la page précédente</button>
+    <button onclick="document.location.href='index.php'">Revenir à la page d'accueil</button>
+    <button onclick="document.location.href='javascript:history.go(-1)'">Revenir à la page précédente</button>
     <img src="medias/bender_message/bender_404.png" class="" alt="Bender 404">
 </body>
 </html>
