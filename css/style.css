@@ -767,6 +767,7 @@ footer button.profile span {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    text-align: center;
 }
 
 #scoreboard table tr:first-child td {
@@ -910,7 +911,7 @@ form:first-child {
 input {
     border: 2px solid black;
     height: 44px;
-    width: calc(100% - 34px);
+    width: 100%;
     border-radius: 5px;
     padding-left: 43px;
     padding-right: 15px;
@@ -969,6 +970,14 @@ input::placeholder {
 
 #login button {
     margin-top: 25px;
+}
+
+.first-step-register{
+    display: block;
+}
+
+.second-step-register{
+    display: none;
 }
 
 /* -------------------------------------------------------------------------------------------------------------

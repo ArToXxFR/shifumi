@@ -135,6 +135,19 @@
                 </tr>
             <?php } ?>
         </table>
+        <?php if(userConnected()){ ?>
+            <span class="title-popup border-radius-top purple">Mon score</span>
+            <table>
+                <tr>
+                    <td><img src="<?= $_SESSION['image'] ?>" alt="avatar" class="img-profile"></td>
+                    <td><span><?= $_SESSION['pseudo'] ?></span></td>
+                    <td><span><?= $_SESSION['userPos']['rank'] ?></span></td>
+                    <td><span><?= $_SESSION['stats_user']['wins']; ?></span></td>
+                    <td><span><?= $_SESSION['stats_user']['looses']; ?></span></td>
+                    <td><span><?= $_SESSION['stats_user']['nuls']; ?></span></td>
+                </tr>
+            </table>
+        <?php } ?>
     </div>
     <button class="close-popup rouge-pastel" onclick="closeForm('scoreboard')">✖</button>
 </div>

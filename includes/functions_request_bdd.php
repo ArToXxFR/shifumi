@@ -25,12 +25,13 @@ function users_infos($dbh, $userInfoLogin){
         $_SESSION['email'] = $userInfoConnected['email'];
         $_SESSION['id'] = $userInfoConnected['id'];
         $_SESSION['avatar_id'] = $userInfoConnected['avatar_id'];
-        $_SESSION['stats_user'] = ['win' => $userInfoConnected['wins'],
-                                    'nulle' => $userInfoConnected['nuls'], 
-                                    'loose' => $userInfoConnected['looses']];
+        $_SESSION['stats_user'] = ['wins' => $userInfoConnected['wins'],
+                                    'nuls' => $userInfoConnected['nuls'], 
+                                    'looses' => $userInfoConnected['looses']];
         $_SESSION['tour'] = 0;
         $_SESSION['choix_bender'] = [];
         $_SESSION['compteur_choix'] = ['pierre' => 0, 'papier' => 0, 'ciseaux' => 0];
+        $_SESSION['userPos'] = userPosition($dbh);
         
     } else {
         echo "Impossible de récupérer les infos de l'utilisateur connecté";
@@ -98,5 +99,12 @@ function isEmailExist($dbh){
     $sth->execute(['email' => strtolower($_POST['email'])]);
     $emailAlreadyExist = $sth->fetch(PDO::FETCH_ASSOC);
     return $emailAlreadyExist;
+}
+
+function userPosition($dbh){
+    $sth = $dbh->prepare("SELECT rank FROM userrank WHERE id=:id");
+    $sth->execute(['id' => $_SESSION['id']]);
+    $pos = $sth->fetch(PDO::FETCH_ASSOC);
+    return $pos;
 }
 
