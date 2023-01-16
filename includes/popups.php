@@ -42,10 +42,10 @@
         <div class="content-popup connexion">
             <form action="index.php" method="POST" class="flex-login">
                 <div class="input icon_username">
-                    <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-username">
+                    <input name="username" type="text" maxlength="25" placeholder="Nom d'utilisateur / Adresse email" class="input-username" required>
                 </div>
                 <div class="input icon_password">
-                    <input name="password" type="password" placeholder="Mot de passe" class="input-password">
+                    <input name="password" type="password" placeholder="Mot de passe" class="input-password" required>
                 </div>
                 <span class="mots_gras">Mot de passe oublié ?</span>
                 <button type="submit" class="button-popup cyan">Se connecter</button>

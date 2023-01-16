@@ -791,6 +791,9 @@ footer button.profile span {
     font-size: 30px;
     line-height: 1;
 }
+#scoreboard table tr:first-child td::after {
+text-align: center;
+}
 
 #scoreboard table tr:first-child td::before {
     height: 54px;
