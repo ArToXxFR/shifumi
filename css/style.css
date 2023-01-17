@@ -777,7 +777,7 @@ footer button.profile span {
     display: flex;
     overflow: hidden;
     overflow-y: scroll;
-    height: calc(100% - 73px);
+    height: calc(100% - 67px);
     margin-top: -3px;
     border: 3px solid black;
     border-bottom-right-radius: 10px;
@@ -956,6 +956,7 @@ form:first-child {
 input {
     border: 2px solid black;
     height: 44px;
+    width: (100% - 60px);
     width: 100%;
     border-radius: 5px;
     padding-left: 43px;
@@ -973,17 +974,10 @@ input::placeholder {
     color: black;
 }
 
-select {
-    width: 100%;
-    height: 50px;
-    border: 2px solid black;
-    border-radius: 5px;
-    padding-left: 15px;
-    padding-right: 15px;
-    -moz-appearance:none; /* Firefox */
-    -webkit-appearance:none; /* Safari and Chrome */
-    appearance:none;
-    cursor: pointer;
+.select img {
+    position: absolute;
+    top: 5px;
+    left: 15px;
 }
 
 .select::after {
@@ -999,6 +993,25 @@ select {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+
+select {
+    width: 100%;
+    height: 50px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 65px;
+    padding-right: 15px;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    cursor: pointer;
+}
+
+select:focus {
+    outline: none !important;
+    border: 2px solid black;
+}
+
 
 /* -------------------------------------------------------------------------------------------------------------
    POPUP - LOGIN
@@ -1040,7 +1053,7 @@ select {
     margin-top: 15px;
 }
 
-#login button {
+#login .button-popup {
     margin-top: 25px;
 }
 
@@ -1476,10 +1489,49 @@ select {
 
 .page_container_404 {
     display: block;
-    height: fit-content;
+    height: calc(100% - 110px);
     padding-top: 80px;
+    padding-bottom: 30px;
 }
 
 .page_container_404 * {
     display: block;
+    text-align: center;
+}
+
+.page_container_404 h1 {
+    font-family: "Futura Medium";
+    line-height: 1.5;
+    font-size: 28px;
+    margin-top: 25px;
+}
+
+.page_container_404 p {
+    margin-top: 15px;
+}
+
+.page_container_404 button.jaune {
+    margin-top: 25px;
+}
+
+.page_container_404 button.jaune::before {
+    content: "";
+}
+
+.page_container_404 button.rouge-pastel::before {
+    content: "";
+}
+
+.page_container_404 button.rouge-pastel::after {
+    display: none;
+}
+
+.page_container_404 .bender_message_404 {
+    background-image: url(../medias/bender_message/bender_404.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: calc(100% - 280px);
+    max-height: 274px;
+    background-size: contain;
+    margin-top: 30px;
 }

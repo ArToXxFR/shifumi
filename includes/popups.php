@@ -67,32 +67,41 @@
             <form action="index.php" method="POST" class="flex-login">
                 <div class="first-step-register" id="first-step">
                     <span>1/2 - Vos identifiants</span>
-                    <input name="email" type="email" placeholder="Taper votre email..." required>
-                    <input type="password" name="password" placeholder="Taper votre mot de passe..." required>
-                    <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                    <div class="input icon_email">
+                        <input name="email" type="email" placeholder="Taper votre email..." required>
+                    </div>
+                    <div class="input icon_password">
+                        <input type="password" name="password" placeholder="Taper votre mot de passe..." required>
+                    </div>
+                    <div class="input icon_username">
+                        <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                    </div>
                     <input type="hidden" name="name" value="register">
                 </div>
                 <div class="second-step-register" id="second-step">
                     <span>2/2 - Personnalisation</span>
-                    <input name="pseudo" type="text" placeholder="Taper votre pseudo..." required>
-                    <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
-                        <?php $avatar_profile = array_avatars($dbh);
-                        foreach ($avatar_profile as $avatar) { ?>
-                            <option value="<?= $avatar['image'] ?>"><?= $avatar['name'] ?></option>
-                        <?php } ?>
-                    </select>
-                    <img src="medias/avatars/avatars_fry.png" alt="avatar" id="avatar" width="50px">
-                    <button type="submit" onclick="closeForm('register');">Terminer</button>
+                    <div class="input icon_username">
+                        <input name="pseudo" type="text" placeholder="Taper votre pseudo..." required>
+                    </div>
+                    <div class="select icon_select">
+                        <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
+                            <?php $avatar_profile = array_avatars($dbh);
+                            foreach ($avatar_profile as $avatar) { ?>
+                                <option value="<?= $avatar['image'] ?>"><?= $avatar['name'] ?></option>
+                            <?php } ?>
+                        </select>
+                        <img src="medias/avatars/avatars_fry.png" alt="avatar" id="avatar" class="img-profile" width="50px">
+                    </div>
+                    <div class="second-step-register footer-popup" id="second-step-buttons">
+                        <button onclick="previousstep()" class="button-popup bouton-gauche rouge-pastel">Précédent</button>
+                        <button type="submit" onclick="closeForm('register')" class="button-popup bouton-droite jaune">Terminer</button>
+                    </div>
                 </div>
             </form>
-        </div>
-        <div class=" first-step-register" id="first-step-buttons">
-            <button onclick="closeForm('register'); openForm('login');">Précédent</button>
-            <button onclick="nextstep();">Suivant</button>
-        </div>
-        <div class="second-step-register" id="second-step-buttons">
-            <button onclick="previousstep()">Précédent</button>
-
+            <div class=" first-step-register footer-popup" id="first-step-buttons">
+                <button onclick="closeForm('register'); openForm('login');" class="button-popup bouton-gauche rouge-pastel">Précédent</button>
+                <button onclick="nextstep();" class="button-popup bouton-droite jaune">Suivant</button>
+            </div>
         </div>
     </div>
     <button class="close-popup rouge-pastel" onclick="closeForm('login'); closeForm('register');">✖</button>
@@ -161,8 +170,8 @@
         <span class="title-popup border-radius-top cyan">Votre profil</span>
         <div class="content-popup">
             <form action="index.php" method="POST" class="flex-login">
-                <div class="select icon_select">
-                    <select name="avatar" id="f_selectTrie" required>
+            <div class="select icon_select">
+                    <select name="avatar" id="f_selectTrie" onchange="changeAvatar()" required>
                         <?php $avatar_profile = array_avatars($dbh);
                         foreach ($avatar_profile as $avatar) { ?>
                             <option value="<?= $avatar['id'] ?>" <?php if ($_SESSION['avatar_id'] == $avatar['id']) {
@@ -170,7 +179,9 @@
                                                                     } ?>><?= $avatar['name']  ?></option>
                         <?php } ?>
                     </select>
+                    <img src="<?= $_SESSION['image'] ?>" alt="avatar" id="avatar" class="img-profile" width="50px">
                 </div>
+
                 <div class="input icon_username">
                     <input name="pseudo" type="text" maxlength="25" placeholder="<?= $_SESSION['pseudo']; ?>" class="input-login">
                 </div>

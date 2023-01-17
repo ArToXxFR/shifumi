@@ -83,7 +83,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
                         /* Appel de la fonction qui va créer l'utilisateur dans la base de données */
 
                         creation_compte($dbh, $infosCompte);
-                        echo "<script>sleep(2000); openForm('felicitation'); </script>";
+                        echo "<script>openLoad('felicitation'); </script>";
                     } else {
                         echo "<script>alert('Les deux mots de passe ne correspondent pas')</script>";
                     }
