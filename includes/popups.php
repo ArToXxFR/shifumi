@@ -73,8 +73,8 @@
                     <div class="input icon_password">
                         <input type="password" name="password" placeholder="Taper votre mot de passe..." required>
                     </div>
-                    <div class="input icon_username">
-                        <input type="password" name="confirmPassword" placeholder="Confirmer le mot de passe" required>
+                    <div class="input icon_password">
+                        <input type="password" name="confirmPassword" placeholder="Confirmer votre mot de passe..." required>
                     </div>
                     <input type="hidden" name="name" value="register">
                 </div>
@@ -130,9 +130,22 @@
 
 <div class="position-popup" id="scoreboard">
     <div class="form-popup">
+    <?php if (userConnected()) { ?>
+            <span class="title-popup border-radius-top cyan">Mon score</span>
+            <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" class="tableau_mon_score">
+                <tr>
+                    <td><img src="<?= $_SESSION['image'] ?>" alt="avatar" class="img-profile"></td>
+                    <td><span><?= $_SESSION['pseudo'] ?></span></td>
+                    <td><span><?= $_SESSION['userPos']['rank'] ?></span></td>
+                    <td><span><?= $_SESSION['stats_user']['wins']; ?></span></td>
+                    <td><span><?= $_SESSION['stats_user']['looses']; ?></span></td>
+                    <td><span><?= $_SESSION['stats_user']['nuls']; ?></span></td>
+                </tr>
+            </table>
+        <?php } ?>
         <span class="title-popup border-radius-top purple">Tableau des scores</span>
         <?php $scoreboard = recuperation_scoreboard($dbh); ?>
-        <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse">
+        <table border="0" cellspacing="0" cellpadding="0" style="border-collapse: collapse" class="tableau_des_scores">
             <?php for ($i = 0; $i < 10; $i++) { ?>
                 <tr>
                     <td><img src="<?= $scoreboard[$i]['image']; ?>" alt="avatar" class="img-profile"></td>
@@ -144,19 +157,6 @@
                 </tr>
             <?php } ?>
         </table>
-        <?php if (userConnected()) { ?>
-            <span class="title-popup border-radius-top purple">Mon score</span>
-            <table>
-                <tr>
-                    <td><img src="<?= $_SESSION['image'] ?>" alt="avatar" class="img-profile"></td>
-                    <td><span><?= $_SESSION['pseudo'] ?></span></td>
-                    <td><span><?= $_SESSION['userPos']['rank'] ?></span></td>
-                    <td><span><?= $_SESSION['stats_user']['wins']; ?></span></td>
-                    <td><span><?= $_SESSION['stats_user']['looses']; ?></span></td>
-                    <td><span><?= $_SESSION['stats_user']['nuls']; ?></span></td>
-                </tr>
-            </table>
-        <?php } ?>
     </div>
     <button class="close-popup rouge-pastel" onclick="closeForm('scoreboard')">✖</button>
 </div>
@@ -211,7 +211,7 @@
                     <input name="password" type="password" placeholder="Taper votre mot de passe..." required>
                 </div>
                 <div class="input icon_password">
-                    <input name="confirmPassword" type="password" placeholder="Votre nouveau mot de pase..." required>
+                    <input name="confirmPassword" type="password" placeholder="Confirmer votre mot de passe..." required>
                 </div>
                 <input type="hidden" name="name" value="modification_password">
                 <div class="footer-popup">
