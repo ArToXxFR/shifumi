@@ -53,8 +53,6 @@ function icon_jeu($choix)
     }
     return $icon;
 }
-
-
 ?>
 
 <!DOCTYPE html>

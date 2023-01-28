@@ -180,10 +180,6 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST') 
             }
         }
     }
-    if (isset($_SESSION['successfullyCreated']) && $_SESSION['successfullyCreated'] == 1) {
-        echo "<script>openForm('felicitation'); </script>";
-        $_SESSION['successfullyCreated'] = 0;
-    }
 }
 
 ?>
